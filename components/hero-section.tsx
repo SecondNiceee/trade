@@ -59,14 +59,14 @@ export function HeroSection({ data }: HeroSectionProps) {
             <span 
               className="relative italic font-black text-[clamp(3.5rem,12vw,10rem)] tracking-tighter"
               style={{
-                background: 'linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 15%, #f8f8f8 30%, #ffffff 45%, #f5f5f5 55%, #e0e0e0 70%, #d8d8d8 85%, #c8c8c8 100%)',
+                background: 'linear-gradient(135deg, #f0f0f0 0%, #ffffff 45%, #e8e8e8 100%)',
                 backgroundSize: '200% 100%',
                 animation: 'text-shimmer 4s ease-in-out infinite',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                filter: 'drop-shadow(0 4px 8px rgba(100,100,100,0.25)) drop-shadow(0 2px 4px rgba(80,80,80,0.2)) drop-shadow(0 0 60px rgba(200,200,200,0.4))',
-                WebkitTextStroke: '1px rgba(50,50,50,0.35)'
+                filter: 'drop-shadow(0 4px 8px rgba(100,100,100,0.25)) drop-shadow(0 2px 4px rgba(80,80,80,0.2)) drop-shadow(0 0 60px rgba(255,255,255,0.5))',
+                WebkitTextStroke: '1px rgba(50,50,50,0.2)'
               }}
             >
               {title}

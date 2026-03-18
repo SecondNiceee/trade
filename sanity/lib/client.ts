@@ -1,6 +1,6 @@
 import { createClient, type QueryParams } from 'next-sanity'
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'placeholder'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01'
 
@@ -23,6 +23,9 @@ export async function sanityFetch<T>({
   revalidate?: number | false
   tags?: string[]
 }): Promise<T> {
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+    return null as T
+  }
   return client.fetch<T>(query, params, {
     next: {
       revalidate,
