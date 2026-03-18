@@ -10,10 +10,13 @@ interface SpeakersSectionProps {
   settings?: SiteSettings | null
 }
 
+const SPEAKERS_PER_PAGE = 12
+
 export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
   const [activeCategory, setActiveCategory] = useState("All")
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [visibleCount, setVisibleCount] = useState(SPEAKERS_PER_PAGE)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -40,6 +43,20 @@ export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
   const filteredSpeakers = activeCategory === "All" 
     ? speakers 
     : speakers.filter(s => s.category === activeCategory)
+
+  // Reset visible count when category changes
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category)
+    setVisibleCount(SPEAKERS_PER_PAGE)
+  }
+
+  const displayedSpeakers = filteredSpeakers.slice(0, visibleCount)
+  const hasMoreSpeakers = visibleCount < filteredSpeakers.length
+  const remainingCount = filteredSpeakers.length - visibleCount
+
+  const loadMoreSpeakers = () => {
+    setVisibleCount(prev => prev + SPEAKERS_PER_PAGE)
+  }
 
   return (
     <section id="speakers" ref={sectionRef} className="relative py-24 bg-[#f8f8f8] overflow-hidden">
@@ -79,7 +96,7 @@ export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
           {categories.map((category, index) => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => handleCategoryChange(category)}
               className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeCategory === category
                   ? "text-white shadow-[0_4px_20px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)] scale-105"
@@ -98,7 +115,7 @@ export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredSpeakers.map((speaker, index) => {
+          {displayedSpeakers.map((speaker, index) => {
             const imageUrl = speaker.image ? urlForImage(speaker.image)?.width(400).height(500).url() : null
             return (
               <div
@@ -204,16 +221,38 @@ export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
           })}
         </div>
 
-        <div 
-          className={`text-center mt-12 transition-all duration-1000 delay-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <button className="group inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 font-medium transition-all hover:scale-105">
-            View All Speakers
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
-          </button>
-        </div>
+        {hasMoreSpeakers && (
+          <div 
+            className={`text-center mt-12 transition-all duration-1000 delay-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
+            <button 
+              onClick={loadMoreSpeakers}
+              className="group inline-flex items-center gap-2 px-6 py-3 rounded-full text-gray-700 hover:text-gray-900 font-medium transition-all hover:scale-105"
+              style={{
+                background: 'linear-gradient(145deg, #ffffff 0%, #f0f0f0 60%, #e8e8e8 100%)',
+                boxShadow: '0 4px 15px rgba(150,150,150,0.2), inset 0 1px 0 rgba(255,255,255,1)',
+                border: '1px solid rgba(200,200,200,0.5)'
+              }}
+            >
+              View More Speakers ({remainingCount} remaining)
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+            </button>
+          </div>
+        )}
+        
+        {!hasMoreSpeakers && filteredSpeakers.length > SPEAKERS_PER_PAGE && (
+          <div 
+            className={`text-center mt-12 transition-all duration-1000 delay-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
+            <p className="text-gray-500 text-sm">
+              Showing all {filteredSpeakers.length} speakers
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )
