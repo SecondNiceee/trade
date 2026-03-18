@@ -57,7 +57,7 @@ export function HeroSection({ data }: HeroSectionProps) {
             }`}
           >
             <span 
-              className="relative italic font-black text-[clamp(3.5rem,12vw,10rem)] tracking-tighter"
+              className="relative italic font-black text-[clamp(3.5rem,12vw,10rem)]"
               style={{
                 background: 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%)',
                 backgroundSize: '200% 100%',
@@ -66,6 +66,8 @@ export function HeroSection({ data }: HeroSectionProps) {
                 backgroundClip: 'text',
                 color: 'transparent',
                 filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.5))',
+                display: 'inline-block',
+                overflow: 'visible',
               }}
             >
               {title}
