@@ -122,12 +122,13 @@ export function HeroSection({ data }: HeroSectionProps) {
                 <a
                   key={index}
                   href={btn.href || "#"}
-                  className="group relative overflow-hidden bg-gradient-to-br from-[#f0f0f0] via-[#ffffff] to-[#e8e8e8] text-[#1a1a1a] px-8 py-3.5 rounded-xl text-base font-semibold flex items-center gap-2 shadow-[0_8px_30px_rgba(150,150,150,0.3),inset_0_1px_0_rgba(255,255,255,0.9)] hover:shadow-[0_12px_40px_rgba(192,192,192,0.4),inset_0_1px_0_rgba(255,255,255,1)] border border-[#c0c0c0] hover:border-[#a0a0a0] hover:scale-105 transition-all duration-300"
+                  className="group relative overflow-hidden px-8 py-3.5 rounded-xl text-base font-semibold flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-[0_4px_20px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] hover:shadow-[0_6px_25px_rgba(192,192,192,0.3)]"
                   style={{
-                    backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.6) 0%, transparent 50%, rgba(255,255,255,0.3) 100%)'
+                    background: 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%)',
+                    color: '#fff'
                   }}
                 >
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                   <span className="relative">{btn.label}</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative" />
                 </a>
