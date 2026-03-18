@@ -35,20 +35,22 @@ export function HeroSection({ data }: HeroSectionProps) {
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-12 pt-24 pb-12">
         <div className="text-center max-w-6xl mx-auto">
           <div
-            className={`inline-flex items-center rounded-full px-5 py-2.5 mb-8 transition-all duration-700 hover:scale-105 ${
+            className={`relative inline-flex items-center overflow-hidden rounded-full px-5 py-2.5 mb-8 transition-all duration-700 hover:scale-105 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             style={{
-              background: 'linear-gradient(135deg, #f0f0f0 0%, #ffffff 45%, #e8e8e8 100%)',
-              boxShadow: '0 8px 30px rgba(150,150,150,0.3), inset 0 2px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(180,180,180,0.2)',
-              backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.6) 0%, transparent 50%, rgba(255,255,255,0.3) 100%)'
+              background: 'linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 25%, #f5f5f5 50%, #e0e0e0 75%, #d8d8d8 100%)',
+              boxShadow: '0 8px 30px rgba(150,150,150,0.2), 0 2px 8px rgba(180,180,180,0.1), inset 0 2px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(180,180,180,0.2)',
+              border: '1px solid rgba(200,200,200,0.5)',
             }}
           >
+            <span className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(160deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 35%, transparent 60%)' }} />
+            <span className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
             <span className="relative flex h-2.5 w-2.5 mr-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gradient-to-r from-[#a0a0a0] to-[#c0c0c0] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gradient-to-br from-[#d0d0d0] to-[#909090] shadow-[0_0_8px_rgba(192,192,192,0.6)]"></span>
             </span>
-            <span className="text-gray-700 text-sm font-semibold tracking-wide">{badge}</span>
+            <span className="relative text-gray-700 text-sm font-semibold tracking-wide">{badge}</span>
           </div>
 
           <h1

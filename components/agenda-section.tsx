@@ -19,7 +19,7 @@ const typeColors: Record<string, { bg: string; text: string; glow: string }> = {
 }
 
 export function AgendaSection({ days, settings }: AgendaSectionProps) {
-  const [activeDay, setActiveDay] = useState(0)
+  const [activeDay, setActiveDay] = useState<number | null>(null)
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -101,7 +101,7 @@ export function AgendaSection({ days, settings }: AgendaSectionProps) {
           {days.map((day, index) => (
             <button
               key={day._id}
-              onClick={() => setActiveDay(index)}
+              onClick={() => setActiveDay(activeDay === index ? null : index)}
               className={`relative px-8 py-4 rounded-xl text-center transition-all duration-500 overflow-hidden group ${
                 activeDay === index
                   ? "text-white shadow-[0_6px_25px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)] scale-105"
@@ -123,6 +123,7 @@ export function AgendaSection({ days, settings }: AgendaSectionProps) {
         </div>
 
         {/* Timeline line */}
+        {activeDay !== null && (
         <div className="relative">
           <div className="absolute left-[2.5rem] sm:left-[2.75rem] top-0 bottom-0 w-px bg-gradient-to-b from-gray-300 via-gray-200 to-transparent" />
 
@@ -173,6 +174,7 @@ export function AgendaSection({ days, settings }: AgendaSectionProps) {
             })}
           </div>
         </div>
+        )}
       </div>
 
       <style jsx>{`
