@@ -2,11 +2,62 @@
 
 import { ArrowRight, MapPin, Calendar, ChevronDown } from "lucide-react"
 import { AnimatedBackground } from "@/components/animated-background"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import type { HeroSettings } from "@/sanity/lib/types"
 
 interface HeroSectionProps {
   data?: HeroSettings | null
+}
+
+const SNOWFLAKES = Array.from({ length: 28 }, (_, i) => ({
+  id: i,
+  left: `${(i * 37 + 3) % 100}%`,
+  size: 10 + (i * 13) % 16,
+  delay: `${(i * 0.4) % 8}s`,
+  duration: `${7 + (i * 1.3) % 8}s`,
+  opacity: 0.25 + (i % 5) * 0.12,
+  drift: (i % 2 === 0 ? 1 : -1) * (10 + (i * 7) % 20),
+}))
+
+function Snowflake({ left, size, delay, duration, opacity, drift }: {
+  left: string, size: number, delay: string, duration: string, opacity: number, drift: number
+}) {
+  return (
+    <div
+      className="absolute top-0 pointer-events-none select-none"
+      style={{
+        left,
+        width: size,
+        height: size,
+        animationName: 'snowfall',
+        animationDuration: duration,
+        animationDelay: delay,
+        animationTimingFunction: 'linear',
+        animationIterationCount: 'infinite',
+        opacity,
+        ['--drift' as string]: `${drift}px`,
+      }}
+    >
+      <svg viewBox="0 0 24 24" width={size} height={size} fill="none">
+        <line x1="12" y1="2" x2="12" y2="22" stroke="url(#sg)" strokeWidth="1.5" strokeLinecap="round"/>
+        <line x1="2" y1="12" x2="22" y2="12" stroke="url(#sg)" strokeWidth="1.5" strokeLinecap="round"/>
+        <line x1="5" y1="5" x2="19" y2="19" stroke="url(#sg)" strokeWidth="1.5" strokeLinecap="round"/>
+        <line x1="19" y1="5" x2="5" y2="19" stroke="url(#sg)" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="12" cy="12" r="2" fill="url(#sg)"/>
+        <circle cx="12" cy="2" r="1.2" fill="url(#sg)"/>
+        <circle cx="12" cy="22" r="1.2" fill="url(#sg)"/>
+        <circle cx="2" cy="12" r="1.2" fill="url(#sg)"/>
+        <circle cx="22" cy="12" r="1.2" fill="url(#sg)"/>
+        <defs>
+          <linearGradient id="sg" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#ffffff"/>
+            <stop offset="50%" stopColor="#d0d0d0"/>
+            <stop offset="100%" stopColor="#a0a0a0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  )
 }
 
 export function HeroSection({ data }: HeroSectionProps) {
@@ -31,6 +82,32 @@ export function HeroSection({ data }: HeroSectionProps) {
   return (
     <section id="hero" className="relative min-h-screen flex flex-col overflow-hidden">
       <AnimatedBackground />
+
+      {/* Snowflakes */}
+      <div className="absolute inset-0 z-[5] overflow-hidden pointer-events-none">
+        {SNOWFLAKES.map((s) => (
+          <Snowflake key={s.id} {...s} />
+        ))}
+      </div>
+
+      <style>{`
+        @keyframes snowfall {
+          0% {
+            transform: translateY(-30px) translateX(0px) rotate(0deg);
+            opacity: 0;
+          }
+          5% {
+            opacity: 1;
+          }
+          95% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(110vh) translateX(var(--drift)) rotate(360deg);
+            opacity: 0;
+          }
+        }
+      `}</style>
 
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-12 pt-24 pb-12">
         <div className="text-center max-w-6xl mx-auto">
