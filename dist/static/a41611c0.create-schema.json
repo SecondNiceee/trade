@@ -1,0 +1,987 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Имя"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "role",
+        "type": "string",
+        "title": "Должность / Позиция"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Технология",
+              "value": "Technology"
+            },
+            {
+              "title": "Финансы",
+              "value": "Finance"
+            },
+            {
+              "title": "Государство",
+              "value": "Government"
+            },
+            {
+              "title": "Устойчивость",
+              "value": "Sustainability"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "Technology",
+                  "Finance",
+                  "Government",
+                  "Sustainability"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "category",
+        "type": "string",
+        "title": "Категория"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Фото"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "linkedin",
+        "type": "url",
+        "title": "URL LinkedIn"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "twitter",
+        "type": "url",
+        "title": "URL Twitter/X"
+      },
+      {
+        "rows": 4,
+        "name": "bio",
+        "type": "text",
+        "title": "Биография"
+      },
+      {
+        "initialValue": 0,
+        "name": "order",
+        "type": "number",
+        "title": "Порядок Отображения"
+      }
+    ],
+    "name": "speaker",
+    "type": "document",
+    "title": "Спикер"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "label",
+        "type": "string",
+        "title": "Метка (например День 1)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "date",
+        "type": "date",
+        "title": "Дата"
+      },
+      {
+        "description": "например \"15 октября 2026\"",
+        "name": "dateDisplay",
+        "type": "string",
+        "title": "Текст для Отображения Даты"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "time",
+                "type": "string",
+                "title": "Время"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "title",
+                "type": "string",
+                "title": "Заголовок"
+              },
+              {
+                "name": "speaker",
+                "type": "string",
+                "title": "Спикер / Описание"
+              },
+              {
+                "name": "location",
+                "type": "string",
+                "title": "Место"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Основной доклад",
+                      "value": "keynote"
+                    },
+                    {
+                      "title": "Панель",
+                      "value": "panel"
+                    },
+                    {
+                      "title": "Мастер-класс",
+                      "value": "workshop"
+                    },
+                    {
+                      "title": "Демонстрация",
+                      "value": "showcase"
+                    },
+                    {
+                      "title": "Сетевой",
+                      "value": "networking"
+                    },
+                    {
+                      "title": "Перерыв",
+                      "value": "break"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "valid",
+                        "constraint": [
+                          "keynote",
+                          "panel",
+                          "workshop",
+                          "showcase",
+                          "networking",
+                          "break"
+                        ]
+                      },
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "type",
+                "type": "string",
+                "title": "Тип Сессии"
+              }
+            ],
+            "type": "object",
+            "name": "session"
+          }
+        ],
+        "name": "sessions",
+        "type": "array",
+        "title": "Сессии"
+      },
+      {
+        "initialValue": 0,
+        "name": "order",
+        "type": "number",
+        "title": "Порядок Отображения"
+      }
+    ],
+    "name": "agendaDay",
+    "type": "document",
+    "title": "День Программы"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Название Билета"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "например \"$499\"",
+        "name": "price",
+        "type": "string",
+        "title": "Цена"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "title": "Описание"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "features",
+        "type": "array",
+        "title": "Особенности"
+      },
+      {
+        "initialValue": false,
+        "name": "popular",
+        "type": "boolean",
+        "title": "Самый Популярный"
+      },
+      {
+        "initialValue": 0,
+        "name": "order",
+        "type": "number",
+        "title": "Порядок Отображения"
+      }
+    ],
+    "name": "ticket",
+    "type": "document",
+    "title": "Билет"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Название Партнера"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Платина",
+              "value": "Platinum"
+            },
+            {
+              "title": "Золото",
+              "value": "Gold"
+            },
+            {
+              "title": "Серебро",
+              "value": "Silver"
+            },
+            {
+              "title": "Медиа-партнеры",
+              "value": "Media Partners"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "Platinum",
+                  "Gold",
+                  "Silver",
+                  "Media Partners"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "tier",
+        "type": "string",
+        "title": "Уровень Партнерства"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "logo",
+        "type": "image",
+        "title": "Логотип"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "website",
+        "type": "url",
+        "title": "URL Веб-сайта"
+      },
+      {
+        "initialValue": 0,
+        "name": "order",
+        "type": "number",
+        "title": "Порядок Отображения"
+      }
+    ],
+    "name": "partner",
+    "type": "document",
+    "title": "Партнер"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Заголовок"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text",
+        "title": "Описание"
+      },
+      {
+        "description": "например \"14 октября 2026\"",
+        "name": "date",
+        "type": "string",
+        "title": "Отображение Даты"
+      },
+      {
+        "description": "например \"Exclusive\", \"Premium\", \"Business\"",
+        "name": "tag",
+        "type": "string",
+        "title": "Тег"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Корона",
+              "value": "crown"
+            },
+            {
+              "title": "Вино",
+              "value": "wine"
+            },
+            {
+              "title": "Портфель",
+              "value": "briefcase"
+            },
+            {
+              "title": "Звезда",
+              "value": "star"
+            }
+          ]
+        },
+        "name": "icon",
+        "type": "string",
+        "title": "Иконка"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Янтарь/Золото",
+              "value": "amber"
+            },
+            {
+              "title": "Роза/Розовый",
+              "value": "rose"
+            },
+            {
+              "title": "Синий/Голубой",
+              "value": "blue"
+            },
+            {
+              "title": "Изумруд/Зеленый",
+              "value": "emerald"
+            }
+          ]
+        },
+        "name": "colorTheme",
+        "type": "string",
+        "title": "Цветовая Схема"
+      },
+      {
+        "initialValue": 0,
+        "name": "order",
+        "type": "number",
+        "title": "Порядок Отображения"
+      }
+    ],
+    "name": "sideEvent",
+    "type": "document",
+    "title": "Дополнительное События"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Silk Road Global Forum 2026",
+        "description": "Маленький текст над основным заголовком",
+        "name": "badge",
+        "type": "string",
+        "title": "Текст Бейджа"
+      },
+      {
+        "initialValue": "SILKON",
+        "name": "title",
+        "type": "string",
+        "title": "Главный Заголовок"
+      },
+      {
+        "initialValue": "2026",
+        "name": "year",
+        "type": "string",
+        "title": "Год"
+      },
+      {
+        "initialValue": "Where Innovation Meets Tradition Along the New Silk Road",
+        "name": "tagline",
+        "type": "string",
+        "title": "Слоган"
+      },
+      {
+        "initialValue": "October 15–16, 2026",
+        "name": "eventDate",
+        "type": "string",
+        "title": "Дата События"
+      },
+      {
+        "initialValue": "Tashkent, Uzbekistan",
+        "name": "eventLocation",
+        "type": "string",
+        "title": "Место События"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "title": "Текст Кнопки"
+              },
+              {
+                "name": "href",
+                "type": "string",
+                "title": "URL Ссылки"
+              },
+              {
+                "initialValue": false,
+                "name": "primary",
+                "type": "boolean",
+                "title": "Основной Стиль"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "ctaButtons",
+        "type": "array",
+        "title": "Кнопки Призыва к Действию"
+      }
+    ],
+    "name": "heroSettings",
+    "type": "document",
+    "title": "Настройки Героя"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "SILKON 2026",
+        "name": "siteTitle",
+        "type": "string",
+        "title": "Заголовок Сайта"
+      },
+      {
+        "rows": 3,
+        "name": "siteDescription",
+        "type": "text",
+        "title": "Описание Сайта (SEO)"
+      },
+      {
+        "initialValue": "World-Class Thought Leaders",
+        "name": "speakersSectionTitle",
+        "type": "string",
+        "title": "Заголовок Секции Спикеров"
+      },
+      {
+        "name": "speakersSectionSubtitle",
+        "type": "string",
+        "title": "Подзаголовок Секции Спикеров"
+      },
+      {
+        "initialValue": [
+          "Technology",
+          "Finance",
+          "Government",
+          "Sustainability"
+        ],
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "speakerCategories",
+        "type": "array",
+        "title": "Категории Спикеров"
+      },
+      {
+        "initialValue": "Two Days of Insights",
+        "name": "agendaSectionTitle",
+        "type": "string",
+        "title": "Заголовок Секции Программы"
+      },
+      {
+        "name": "agendaSectionSubtitle",
+        "type": "string",
+        "title": "Подзаголовок Секции Программы"
+      },
+      {
+        "initialValue": "Choose Your Experience",
+        "name": "ticketsSectionTitle",
+        "type": "string",
+        "title": "Заголовок Секции Билетов"
+      },
+      {
+        "name": "ticketsSectionSubtitle",
+        "type": "string",
+        "title": "Подзаголовок Секции Билетов"
+      },
+      {
+        "initialValue": "Trusted by Industry Leaders",
+        "name": "partnersSectionTitle",
+        "type": "string",
+        "title": "Заголовок Секции Партнеров"
+      },
+      {
+        "name": "partnersSectionSubtitle",
+        "type": "string",
+        "title": "Подзаголовок Секции Партнеров"
+      },
+      {
+        "initialValue": "Premium Experiences",
+        "name": "sideEventsSectionTitle",
+        "type": "string",
+        "title": "Заголовок Секции Дополнительных События"
+      },
+      {
+        "name": "sideEventsSectionSubtitle",
+        "type": "string",
+        "title": "Подзаголовок Секции Дополнительных События"
+      },
+      {
+        "name": "contactEmail",
+        "type": "string",
+        "title": "Email Контакта"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "twitter",
+            "type": "url",
+            "title": "Twitter/X"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "linkedin",
+            "type": "url",
+            "title": "LinkedIn"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "instagram",
+            "type": "url"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "telegram",
+            "type": "url"
+          }
+        ],
+        "name": "socialLinks",
+        "type": "object",
+        "title": "Ссылки на Социальные Сети"
+      }
+    ],
+    "name": "siteSettings",
+    "type": "document",
+    "title": "Настройки Сайта"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Why Uzbekistan",
+        "name": "sectionLabel",
+        "type": "string",
+        "title": "Метка Секции"
+      },
+      {
+        "initialValue": "The Heart of Central Asia",
+        "name": "title",
+        "type": "string",
+        "title": "Заголовок"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Strategically positioned at the crossroads of ancient trade routes, Uzbekistan offers unparalleled access to markets spanning Europe, Asia, and the Middle East.",
+        "name": "description",
+        "type": "text",
+        "title": "Описание"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "description": "Например: 7.6",
+                "name": "value",
+                "type": "number",
+                "title": "Значение (число)"
+              },
+              {
+                "description": "Например: % или M+ или +",
+                "name": "suffix",
+                "type": "string",
+                "title": "Суффикс"
+              },
+              {
+                "description": "Например: GDP Growth Rate",
+                "name": "label",
+                "type": "string",
+                "title": "Подпись"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "График (TrendingUp)",
+                      "value": "trending-up"
+                    },
+                    {
+                      "title": "Люди (Users)",
+                      "value": "users"
+                    },
+                    {
+                      "title": "Здание (Building)",
+                      "value": "building"
+                    },
+                    {
+                      "title": "Самолёт (Plane)",
+                      "value": "plane"
+                    },
+                    {
+                      "title": "Глобус (Globe)",
+                      "value": "globe"
+                    },
+                    {
+                      "title": "Звезда (Star)",
+                      "value": "star"
+                    }
+                  ],
+                  "layout": "radio"
+                },
+                "initialValue": "trending-up",
+                "name": "icon",
+                "type": "string",
+                "title": "Иконка"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "stats",
+        "type": "array",
+        "title": "Статистика"
+      },
+      {
+        "initialValue": "A Gateway to 3 Billion Consumers",
+        "name": "gatewayTitle",
+        "type": "string",
+        "title": "Заголовок Блока \"Gateway\""
+      },
+      {
+        "rows": 3,
+        "initialValue": "Uzbekistan's strategic location provides direct access to the CIS, South Asia, and emerging markets. The country's ambitious reform agenda has created one of the most business-friendly environments in the region.",
+        "name": "gatewayDescription",
+        "type": "text",
+        "title": "Описание Блока \"Gateway\""
+      },
+      {
+        "initialValue": [
+          "Free economic zones with tax incentives",
+          "Simplified visa regime for 90+ countries",
+          "Modern infrastructure and logistics hubs",
+          "Rapidly growing digital economy"
+        ],
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "gatewayPoints",
+        "type": "array",
+        "title": "Пункты Преимуществ"
+      }
+    ],
+    "name": "whyUzbekistanSettings",
+    "type": "document",
+    "title": "Секция \"Почему Узбекистан\""
+  }
+]

@@ -8,7 +8,7 @@ import { structure } from './sanity/structure'
 
 // Hardcoded for Sanity Studio deployment
 // Replace with your actual project ID from https://manage.sanity.io
-const projectId = 'wv2ifpz9' // Your Sanity project ID
+const projectId = '53g9fbe2' // Your Sanity project ID
 const dataset = 'production'
 
 export default defineConfig({
