@@ -142,7 +142,7 @@ export function PartnersSection({ partners, settings }: PartnersSectionProps) {
                             className="relative z-10 max-h-full max-w-full object-contain"
                           />
                         ) : (
-                          <span className={`relative z-10 text-center text-sm font-semibold transition-colors duration-300 ${
+                          <span className={`relative z-10 text-center text-sm sm:text-base md:text-lg font-semibold transition-colors duration-300 ${
                             hoveredPartner === key ? "text-gray-800" : "text-gray-600"
                           }`}>
                             {partner.name}
