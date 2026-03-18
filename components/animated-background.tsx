@@ -197,15 +197,15 @@ export function AnimatedBackground() {
             </g>
             {/* ─────────────────────────────────────────────────────────── */}
 
-            {/* Floating ambient particles - bigger and brighter */}
+            {/* Floating ambient particles - small and bright */}
             {[...Array(15)].map((_, i) => (
               <circle
                 key={`particle-${i}`}
                 cx={100 + i * 80}
                 cy={200 + (i % 4) * 150}
-                r={3 + (i % 3) * 1.5}
-                fill="#e0e0e0"
-                opacity={0.85 + (i % 3) * 0.1}
+                r={1 + (i % 3) * 0.5}
+                fill="#ffffff"
+                opacity={0.9 + (i % 3) * 0.05}
                 filter="url(#strongGlow)"
               >
                 <animate
@@ -216,13 +216,13 @@ export function AnimatedBackground() {
                 />
                 <animate
                   attributeName="opacity"
-                  values={`${0.85 + (i % 3) * 0.1};1;${0.85 + (i % 3) * 0.1}`}
+                  values={`${0.7 + (i % 3) * 0.1};1;${0.7 + (i % 3) * 0.1}`}
                   dur={`${2 + i * 0.2}s`}
                   repeatCount="indefinite"
                 />
                 <animate
                   attributeName="r"
-                  values={`${3 + (i % 3) * 1.5};${4 + (i % 3) * 2};${3 + (i % 3) * 1.5}`}
+                  values={`${1 + (i % 3) * 0.5};${1.5 + (i % 3) * 0.7};${1 + (i % 3) * 0.5}`}
                   dur={`${2.5 + i * 0.15}s`}
                   repeatCount="indefinite"
                 />
