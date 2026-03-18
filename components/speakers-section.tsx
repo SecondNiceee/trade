@@ -148,7 +148,7 @@ export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
                       </div>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#e8e8e8] via-[#e8e8e8]/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#e8e8e8]/80 via-transparent to-transparent" style={{ top: '60%' }} />
                   
                   <div className={`absolute top-4 right-4 flex gap-2 transition-all duration-300 z-30 ${
                     hoveredIndex === index ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
