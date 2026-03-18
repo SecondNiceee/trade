@@ -35,11 +35,13 @@ export function HeroSection({ data }: HeroSectionProps) {
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-12 pt-24 pb-12">
         <div className="text-center max-w-6xl mx-auto">
           <div
-            className={`inline-flex items-center bg-gradient-to-r from-[#e8e8e8]/60 via-[#f5f5f5]/80 to-[#e8e8e8]/60 backdrop-blur-md border border-[#c0c0c0]/50 rounded-full px-5 py-2.5 mb-8 transition-all duration-700 shadow-[0_4px_20px_rgba(192,192,192,0.3),inset_0_1px_0_rgba(255,255,255,0.8)] hover:shadow-[0_8px_30px_rgba(192,192,192,0.4),inset_0_1px_0_rgba(255,255,255,0.9)] ${
+            className={`inline-flex items-center rounded-full px-5 py-2.5 mb-8 transition-all duration-700 hover:scale-105 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             style={{
-              backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(255,255,255,0.2) 100%)'
+              background: 'linear-gradient(135deg, #f0f0f0 0%, #ffffff 45%, #e8e8e8 100%)',
+              boxShadow: '0 8px 30px rgba(150,150,150,0.3), inset 0 2px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(180,180,180,0.2)',
+              backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.6) 0%, transparent 50%, rgba(255,255,255,0.3) 100%)'
             }}
           >
             <span className="relative flex h-2.5 w-2.5 mr-3">
@@ -57,14 +59,13 @@ export function HeroSection({ data }: HeroSectionProps) {
             <span 
               className="relative italic font-black text-[clamp(3.5rem,12vw,10rem)] tracking-tighter"
               style={{
-                background: 'linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 15%, #f8f8f8 30%, #ffffff 45%, #f5f5f5 55%, #e0e0e0 70%, #d8d8d8 85%, #c8c8c8 100%)',
+                background: 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%)',
                 backgroundSize: '200% 100%',
                 animation: 'text-shimmer 4s ease-in-out infinite',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                filter: 'drop-shadow(0 4px 8px rgba(100,100,100,0.25)) drop-shadow(0 2px 4px rgba(80,80,80,0.2)) drop-shadow(0 0 60px rgba(200,200,200,0.4))',
-                WebkitTextStroke: '1px rgba(50,50,50,0.35)'
+                filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.5))',
               }}
             >
               {title}
@@ -134,12 +135,17 @@ export function HeroSection({ data }: HeroSectionProps) {
                 <a
                   key={index}
                   href={btn.href || "#"}
-                  className="relative px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 bg-gradient-to-b from-[#fafafa] to-[#e8e8e8] border border-[#c0c0c0]/60 hover:border-[#a0a0a0] hover:text-gray-900 hover:scale-105 transition-all duration-300 shadow-[0_4px_15px_rgba(192,192,192,0.2),inset_0_1px_0_rgba(255,255,255,0.8)] hover:shadow-[0_8px_25px_rgba(192,192,192,0.35),inset_0_1px_0_rgba(255,255,255,1)]"
+                  className="group relative overflow-hidden px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 hover:text-gray-900 hover:scale-105 transition-all duration-300"
                   style={{
-                    backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.6) 0%, transparent 50%, rgba(255,255,255,0.3) 100%)'
+                    background: 'linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 25%, #f5f5f5 50%, #e0e0e0 75%, #d8d8d8 100%)',
+                    boxShadow: '0 8px 30px rgba(150,150,150,0.2), 0 2px 8px rgba(180,180,180,0.1), inset 0 2px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(180,180,180,0.2)',
+                    border: '1px solid rgba(200,200,200,0.5)',
                   }}
                 >
-                  {btn.label}
+                  <span className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(160deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 35%, transparent 60%)' }} />
+                  <span className="absolute top-0 bottom-0 w-1/2 -left-1/2 group-hover:left-full transition-all duration-700 pointer-events-none" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.45) 50%, transparent 100%)' }} />
+                  <span className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+                  <span className="relative">{btn.label}</span>
                 </a>
               )
             ))}

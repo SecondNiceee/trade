@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Check, CreditCard, Landmark, Sparkles } from "lucide-react"
+import { Check, CreditCard, Landmark, Sparkles, Wallet } from "lucide-react"
 import type { Ticket, SiteSettings } from "@/sanity/lib/types"
 
 interface TicketsSectionProps {
@@ -190,6 +190,10 @@ export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
           <div className="flex items-center gap-2 hover:text-gray-600 transition-colors">
             <Landmark className="w-5 h-5" />
             <span>Bank Transfer</span>
+          </div>
+          <div className="flex items-center gap-2 hover:text-gray-600 transition-colors">
+            <Wallet className="w-5 h-5" />
+            <span>Pay with USDT/USDC</span>
           </div>
           <span>Secure payments powered by Stripe</span>
         </div>

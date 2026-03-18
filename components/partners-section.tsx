@@ -107,14 +107,14 @@ export function PartnersSection({ partners, settings }: PartnersSectionProps) {
                   <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent ml-4" />
                 </div>
                 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
                   {tier.partners.map((partner, partnerIndex) => {
-                    const logoUrl = partner.logo ? urlForImage(partner.logo)?.width(200).height(100).url() : null
+                    const logoUrl = partner.logo ? urlForImage(partner.logo)?.width(120).height(120).url() : null
                     const key = `${tierIndex}-${partnerIndex}`
                     return (
                       <div
                         key={partner._id}
-                        className={`group relative aspect-[2/1] rounded-xl flex items-center justify-center p-4 overflow-hidden transition-all duration-500 cursor-pointer ${
+                        className={`group relative aspect-square rounded-xl flex items-center justify-center p-4 overflow-hidden transition-all duration-500 cursor-pointer ${
                           hoveredPartner === key ? "scale-105" : ""
                         }`}
                         style={{
