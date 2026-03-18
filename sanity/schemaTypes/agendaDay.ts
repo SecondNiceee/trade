@@ -63,10 +63,10 @@ export const agendaDay = defineType({
               options: {
                 list: [
                   { title: 'Основной доклад', value: 'keynote' },
-                  { title: 'Панель', value: 'panel' },
+                  { title: 'Панельная дискуссия', value: 'panel' },
                   { title: 'Мастер-класс', value: 'workshop' },
                   { title: 'Демонстрация', value: 'showcase' },
-                  { title: 'Сетевой', value: 'networking' },
+                  { title: 'Нетворкинг', value: 'networking' },
                   { title: 'Перерыв', value: 'break' },
                 ],
               },
