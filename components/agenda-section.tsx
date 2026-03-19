@@ -44,7 +44,7 @@ export function AgendaSection({ days, settings }: AgendaSectionProps) {
   const subtitle = settings?.agendaSectionSubtitle || "Packed with keynotes, panels, workshops, and networking opportunities."
 
   return (
-    <section id="agenda" ref={sectionRef} className="relative py-24 bg-white overflow-hidden">
+    <section id="agenda" ref={sectionRef} className="relative py-12 bg-white overflow-hidden">
       {/* Premium metallic background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#fafafa] via-white to-[#fafafa]" />
       <div className="absolute top-1/4 -left-32 w-[400px] h-[400px] rounded-full blur-[100px] animate-pulse" style={{ background: 'radial-gradient(circle, rgba(192,192,192,0.2) 0%, transparent 70%)' }} />
