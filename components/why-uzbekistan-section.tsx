@@ -50,6 +50,7 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
 }
 
 const TASHKENT_CENTER: [number, number] = [69.2401, 41.2995]
+const ALMATY_CENTER: [number, number] = [76.9385, 43.2380]
 
 function MapInstance({
   zoom,
@@ -100,6 +101,19 @@ function MapInstance({
 
     new maplibregl.Marker({ element: markerElement })
       .setLngLat(TASHKENT_CENTER)
+      .addTo(map.current)
+
+    // Add Kazakhstan marker
+    const kzMarkerElement = document.createElement("div")
+    kzMarkerElement.className = "kazakhstan-marker"
+    kzMarkerElement.innerHTML = `
+      <div class="marker-pulse-kz"></div>
+      <div class="marker-pulse-delay-kz"></div>
+      <div class="marker-center-kz"><span>KZ</span></div>
+    `
+
+    new maplibregl.Marker({ element: kzMarkerElement })
+      .setLngLat(ALMATY_CENTER)
       .addTo(map.current)
 
     if (showNavigation) {
@@ -255,19 +269,67 @@ function CentralAsiaMap() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
+
+        /* Kazakhstan marker styles */
+        .kazakhstan-marker {
+          position: relative;
+          width: 48px;
+          height: 48px;
+          cursor: pointer;
+        }
+        .marker-pulse-kz,
+        .marker-pulse-delay-kz {
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          border: 2px solid rgba(180, 140, 100, 0.5);
+          animation: markerPing 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        .marker-pulse-delay-kz {
+          animation-delay: 0.8s;
+        }
+        .marker-center-kz {
+          position: absolute;
+          inset: 8px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(145deg, #e8d4b8 0%, #d4c4a8 60%, #c4b498 100%);
+          box-shadow: 0 4px 15px rgba(140, 100, 60, 0.3),
+                      inset 0 2px 0 rgba(255, 255, 255, 0.8),
+                      inset 0 -2px 4px rgba(180, 140, 80, 0.3);
+          border: 1.5px solid rgba(200, 160, 120, 0.6);
+          transition: transform 0.3s ease;
+        }
+        .kazakhstan-marker:hover .marker-center-kz {
+          transform: scale(1.1);
+        }
+        .marker-center-kz span {
+          font-weight: 700;
+          font-size: 10px;
+          background: linear-gradient(135deg, #8b5a00 0%, #c17a00 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
         @keyframes markerPing {
           0% { transform: scale(0.8); opacity: 1; }
           75%, 100% { transform: scale(2); opacity: 0; }
         }
+        
         .maplibregl-ctrl-group {
           background: linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 100%) !important;
           border: 1px solid rgba(200, 200, 200, 0.5) !important;
           box-shadow: 0 4px 15px rgba(150, 150, 150, 0.2) !important;
         }
+        
         .maplibregl-ctrl-group button {
           background: transparent !important;
           border-bottom: 1px solid rgba(200, 200, 200, 0.3) !important;
         }
+        
         .maplibregl-ctrl-group button:hover {
           background: rgba(255, 255, 255, 0.5) !important;
         }
