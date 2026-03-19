@@ -60,13 +60,13 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   return (
     <div
       ref={ref}
-      className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent"
+      className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent whitespace-nowrap overflow-visible"
       style={{
         backgroundImage: "linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 50%, #1a1a1a 100%)",
       }}
     >
-      {count}
-      {suffix}
+      <span>{count}</span>
+      <span>{suffix}</span>
     </div>
   )
 }
