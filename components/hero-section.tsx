@@ -11,31 +11,31 @@ interface HeroSectionProps {
 
 // Static sparkle positions — fixed so they don't re-render
 const SPARKLES = [
-  { id: 1,  x: 8,   y: 12,  size: 3,   opacity: 0.7,  rotate: 0   },
-  { id: 2,  x: 15,  y: 28,  size: 2,   opacity: 0.5,  rotate: 45  },
-  { id: 3,  x: 22,  y: 7,   size: 4,   opacity: 0.8,  rotate: 30  },
-  { id: 4,  x: 31,  y: 42,  size: 2.5, opacity: 0.6,  rotate: 15  },
-  { id: 5,  x: 40,  y: 18,  size: 3,   opacity: 0.9,  rotate: 60  },
-  { id: 6,  x: 47,  y: 55,  size: 2,   opacity: 0.4,  rotate: 0   },
-  { id: 7,  x: 55,  y: 9,   size: 4,   opacity: 0.75, rotate: 45  },
-  { id: 8,  x: 62,  y: 33,  size: 2,   opacity: 0.55, rotate: 20  },
-  { id: 9,  x: 70,  y: 22,  size: 3.5, opacity: 0.85, rotate: 75  },
-  { id: 10, x: 78,  y: 48,  size: 2,   opacity: 0.5,  rotate: 30  },
-  { id: 11, x: 85,  y: 14,  size: 3,   opacity: 0.7,  rotate: 0   },
-  { id: 12, x: 92,  y: 38,  size: 2.5, opacity: 0.65, rotate: 45  },
-  { id: 13, x: 5,   y: 65,  size: 2,   opacity: 0.45, rotate: 15  },
-  { id: 14, x: 18,  y: 72,  size: 3,   opacity: 0.6,  rotate: 60  },
-  { id: 15, x: 28,  y: 60,  size: 2,   opacity: 0.5,  rotate: 0   },
-  { id: 16, x: 38,  y: 80,  size: 4,   opacity: 0.8,  rotate: 30  },
-  { id: 17, x: 50,  y: 70,  size: 2.5, opacity: 0.55, rotate: 45  },
-  { id: 18, x: 60,  y: 85,  size: 2,   opacity: 0.4,  rotate: 75  },
-  { id: 19, x: 72,  y: 62,  size: 3,   opacity: 0.7,  rotate: 20  },
-  { id: 20, x: 83,  y: 78,  size: 2,   opacity: 0.5,  rotate: 0   },
-  { id: 21, x: 90,  y: 58,  size: 3.5, opacity: 0.75, rotate: 45  },
-  { id: 22, x: 96,  y: 82,  size: 2,   opacity: 0.45, rotate: 30  },
-  { id: 23, x: 12,  y: 88,  size: 3,   opacity: 0.6,  rotate: 15  },
-  { id: 24, x: 44,  y: 93,  size: 2.5, opacity: 0.5,  rotate: 60  },
-  { id: 25, x: 67,  y: 92,  size: 2,   opacity: 0.4,  rotate: 0   },
+  { id: 1,  x: 8,   y: 12,  size: 5,   opacity: 0.95, rotate: 0   },
+  { id: 2,  x: 15,  y: 28,  size: 3.5, opacity: 0.8,  rotate: 45  },
+  { id: 3,  x: 22,  y: 7,   size: 6.5, opacity: 1,    rotate: 30  },
+  { id: 4,  x: 31,  y: 42,  size: 4,   opacity: 0.85, rotate: 15  },
+  { id: 5,  x: 40,  y: 18,  size: 5.5, opacity: 1,    rotate: 60  },
+  { id: 6,  x: 47,  y: 55,  size: 3,   opacity: 0.75, rotate: 0   },
+  { id: 7,  x: 55,  y: 9,   size: 6,   opacity: 0.95, rotate: 45  },
+  { id: 8,  x: 62,  y: 33,  size: 3.5, opacity: 0.8,  rotate: 20  },
+  { id: 9,  x: 70,  y: 22,  size: 5.5, opacity: 1,    rotate: 75  },
+  { id: 10, x: 78,  y: 48,  size: 3,   opacity: 0.8,  rotate: 30  },
+  { id: 11, x: 85,  y: 14,  size: 5,   opacity: 0.95, rotate: 0   },
+  { id: 12, x: 92,  y: 38,  size: 4.5, opacity: 0.9,  rotate: 45  },
+  { id: 13, x: 5,   y: 65,  size: 3.5, opacity: 0.8,  rotate: 15  },
+  { id: 14, x: 18,  y: 72,  size: 5,   opacity: 0.85, rotate: 60  },
+  { id: 15, x: 28,  y: 60,  size: 3.5, opacity: 0.8,  rotate: 0   },
+  { id: 16, x: 38,  y: 80,  size: 6,   opacity: 0.95, rotate: 30  },
+  { id: 17, x: 50,  y: 70,  size: 4.5, opacity: 0.9,  rotate: 45  },
+  { id: 18, x: 60,  y: 85,  size: 3.5, opacity: 0.75, rotate: 75  },
+  { id: 19, x: 72,  y: 62,  size: 5,   opacity: 0.95, rotate: 20  },
+  { id: 20, x: 83,  y: 78,  size: 3.5, opacity: 0.8,  rotate: 0   },
+  { id: 21, x: 90,  y: 58,  size: 5.5, opacity: 1,    rotate: 45  },
+  { id: 22, x: 96,  y: 82,  size: 4,   opacity: 0.85, rotate: 30  },
+  { id: 23, x: 12,  y: 88,  size: 5,   opacity: 0.9,  rotate: 15  },
+  { id: 24, x: 44,  y: 93,  size: 4.5, opacity: 0.85, rotate: 60  },
+  { id: 25, x: 67,  y: 92,  size: 3.5, opacity: 0.8,  rotate: 0   },
 ]
 
 function SparkleIcon({ size, opacity, rotate }: { size: number; opacity: number; rotate: number }) {
@@ -45,7 +45,11 @@ function SparkleIcon({ size, opacity, rotate }: { size: number; opacity: number;
       height={size * 4}
       viewBox="0 0 16 16"
       fill="none"
-      style={{ opacity, transform: `rotate(${rotate}deg)` }}
+      style={{ 
+        opacity, 
+        transform: `rotate(${rotate}deg)`,
+        filter: `drop-shadow(0 0 ${size * 2}px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 ${size}px rgba(200, 200, 200, 0.6))`,
+      }}
     >
       {/* 4-point star sparkle */}
       <path
@@ -55,8 +59,8 @@ function SparkleIcon({ size, opacity, rotate }: { size: number; opacity: number;
       <defs>
         <radialGradient id="sparkleGrad" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="50%" stopColor="#d8d8d8" />
-          <stop offset="100%" stopColor="#a0a0a0" />
+          <stop offset="40%" stopColor="#e8e8e8" />
+          <stop offset="100%" stopColor="#b0b0b0" />
         </radialGradient>
       </defs>
     </svg>
