@@ -96,7 +96,7 @@ function MapInstance({
     markerElement.innerHTML = `
       <div class="marker-pulse"></div>
       <div class="marker-pulse-delay"></div>
-      <div class="marker-center"><span>TASHKENT</span></div>
+      <div class="marker-center"><span>KZ</span></div>
     `
 
     new maplibregl.Marker({ element: markerElement })
