@@ -53,7 +53,7 @@ export function PartnersSection({ partners, settings }: PartnersSectionProps) {
   })).filter(t => t.partners.length > 0)
 
   return (
-    <section id="partners" ref={sectionRef} className="relative py-24 bg-white overflow-hidden">
+    <section id="partners" ref={sectionRef} className="relative py-12 bg-white overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#fafafa] via-white to-[#fafafa]" />
       <SectionSparkles />
       

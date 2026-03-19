@@ -36,7 +36,7 @@ export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
   const subtitle = settings?.ticketsSectionSubtitle || "Early bird pricing available until August 31, 2026. Group discounts available for 5+ tickets."
 
   return (
-    <section id="tickets" ref={sectionRef} className="relative py-24 bg-white overflow-hidden">
+    <section id="tickets" ref={sectionRef} className="relative py-12 bg-white overflow-hidden">
       {/* Premium metallic background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#fafafa] via-white to-[#fafafa]" />
       <SectionSparkles />
