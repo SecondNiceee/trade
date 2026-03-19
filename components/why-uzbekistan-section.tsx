@@ -57,10 +57,13 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
     return () => observer.disconnect()
   }, [value])
 
+  // Use smaller font for large numbers to prevent overflow
+  const isLargeNumber = value >= 1000
+  
   return (
     <div
       ref={ref}
-      className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent whitespace-nowrap overflow-visible"
+      className={`font-bold bg-clip-text text-transparent whitespace-nowrap ${isLargeNumber ? 'text-3xl sm:text-4xl' : 'text-4xl sm:text-5xl'}`}
       style={{
         backgroundImage: "linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 50%, #1a1a1a 100%)",
       }}
@@ -140,7 +143,7 @@ export function WhyUzbekistanSection({ data }: WhyUzbekistanSectionProps) {
             return (
               <div
                 key={index}
-                className="group relative text-center p-8 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.03]"
+                className="group relative text-center p-8 rounded-2xl transition-all duration-500 hover:scale-[1.03]"
                 style={{
                   background:
                     "linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 25%, #f5f5f5 50%, #e0e0e0 75%, #d8d8d8 100%)",
