@@ -78,11 +78,12 @@ export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        {/* Ticket grid: first 3 in a row, remainder centered on next row */}
+        <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
           {tickets.map((ticket, index) => (
             <div
               key={ticket._id}
-              className={`group relative rounded-3xl p-8 overflow-hidden transition-all duration-500 ${
+              className={`group relative rounded-3xl p-8 overflow-hidden transition-all duration-500 w-full md:w-[calc(33.333%-1.5rem)] lg:w-[calc(33.333%-2rem)] ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               } ${hoveredIndex === index ? "scale-[1.03]" : ""}`}
               style={{
