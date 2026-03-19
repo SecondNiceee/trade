@@ -83,7 +83,7 @@ export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
           {tickets.map((ticket, index) => (
             <div
               key={ticket._id}
-              className={`group relative rounded-3xl p-8 overflow-hidden transition-all duration-500 w-full md:w-[calc(33.333%-1.5rem)] lg:w-[calc(33.333%-2rem)] ${
+              className={`group relative rounded-3xl p-8 overflow-hidden transition-all duration-500 w-full md:w-[calc(33.333%-1.5rem)] lg:w-[calc(33.333%-2rem)] flex flex-col ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               } ${hoveredIndex === index ? "scale-[1.03]" : ""}`}
               style={{
@@ -131,7 +131,7 @@ export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
                 </div>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-8 flex-grow">
                 {ticket.features?.map((feature, i) => (
                   <li 
                     key={i} 
@@ -160,7 +160,7 @@ export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
 
               {ticket.popular ? (
                 <button 
-                  className="w-full py-3.5 rounded-xl font-semibold text-[#1a1a1a] hover:scale-105 transition-all duration-300 shadow-[0_6px_25px_rgba(192,192,192,0.35),inset_0_1px_0_rgba(255,255,255,0.6)] hover:shadow-[0_8px_35px_rgba(192,192,192,0.5),inset_0_1px_0_rgba(255,255,255,0.8)]"
+                  className="w-full py-3.5 rounded-xl font-semibold text-[#1a1a1a] hover:scale-105 transition-all duration-300 shadow-[0_6px_25px_rgba(192,192,192,0.35),inset_0_1px_0_rgba(255,255,255,0.6)] hover:shadow-[0_8px_35px_rgba(192,192,192,0.5),inset_0_1px_0_rgba(255,255,255,0.8)] mt-auto"
                   style={{
                     background: 'linear-gradient(135deg, #f0f0f0 0%, #ffffff 30%, #e0e0e0 70%, #d0d0d0 100%)',
                   }}
@@ -169,7 +169,7 @@ export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
                 </button>
               ) : (
                 <button 
-                  className="w-full py-3.5 rounded-xl font-semibold text-white hover:scale-105 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.1)] hover:shadow-[0_6px_25px_rgba(0,0,0,0.2)]"
+                  className="w-full py-3.5 rounded-xl font-semibold text-white hover:scale-105 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.1)] hover:shadow-[0_6px_25px_rgba(0,0,0,0.2)] mt-auto"
                   style={{
                     background: 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%)',
                   }}
