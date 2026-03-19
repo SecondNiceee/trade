@@ -49,7 +49,7 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
   ],
 }
 
-const UZBEKISTAN_CENTER: [number, number] = [64.5853, 41.3775]
+const TASHKENT_CENTER: [number, number] = [69.2401, 41.2995]
 
 function MapInstance({
   zoom,
@@ -71,7 +71,7 @@ function MapInstance({
     map.current = new maplibregl.Map({
       container: mapContainer.current,
       style: MAP_STYLE,
-      center: UZBEKISTAN_CENTER,
+      center: TASHKENT_CENTER,
       zoom,
       minZoom: 2,
       maxZoom: 10,
@@ -95,11 +95,11 @@ function MapInstance({
     markerElement.innerHTML = `
       <div class="marker-pulse"></div>
       <div class="marker-pulse-delay"></div>
-      <div class="marker-center"><span>UZ</span></div>
+      <div class="marker-center"><span>TASHKENT</span></div>
     `
 
     new maplibregl.Marker({ element: markerElement })
-      .setLngLat(UZBEKISTAN_CENTER)
+      .setLngLat(TASHKENT_CENTER)
       .addTo(map.current)
 
     if (showNavigation) {
@@ -198,7 +198,7 @@ function MapModal({ onClose }: { onClose: () => void }) {
           </span>
         </div>
 
-        <MapInstance zoom={4.5} interactive={true} showNavigation={true} />
+        <MapInstance zoom={9} interactive={true} showNavigation={true} />
       </div>
     </div>
   )
@@ -275,7 +275,7 @@ function CentralAsiaMap() {
 
       {/* Thumbnail */}
       <div className="relative w-full h-full group">
-        <MapInstance zoom={4} interactive={false} showNavigation={false} rounded />
+        <MapInstance zoom={7} interactive={false} showNavigation={false} rounded />
 
         {/* Click-to-expand overlay */}
         <button
