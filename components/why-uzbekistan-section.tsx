@@ -3,6 +3,8 @@
 import { useEffect, useState, useRef } from "react"
 import { TrendingUp, Users, Building, Plane, Globe, Star } from "lucide-react"
 import type { WhyUzbekistanSettings } from "@/sanity/lib/types"
+import maplibregl from "maplibre-gl"
+import "maplibre-gl/dist/maplibre-gl.css"
 
 const iconMap = {
   "trending-up": TrendingUp,
@@ -20,6 +22,171 @@ const defaultStats = [
   { icon: "plane" as const, value: 50, suffix: "+", label: "Direct Flight Routes" },
   { icon: "globe" as const, value: 35, suffix: "", label: "Visa Free Directions" },
 ]
+
+// Central Asia Map Component with MapLibre
+function CentralAsiaMap() {
+  const mapContainer = useRef<HTMLDivElement>(null)
+  const map = useRef<maplibregl.Map | null>(null)
+  const markerRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (!mapContainer.current || map.current) return
+
+    // Uzbekistan coordinates (center of the country)
+    const uzbekistanCenter: [number, number] = [64.5853, 41.3775]
+
+    map.current = new maplibregl.Map({
+      container: mapContainer.current,
+      style: {
+        version: 8,
+        sources: {
+          "carto-light": {
+            type: "raster",
+            tiles: [
+              "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png",
+              "https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png",
+              "https://c.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png",
+            ],
+            tileSize: 256,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          },
+        },
+        layers: [
+          {
+            id: "carto-light-layer",
+            type: "raster",
+            source: "carto-light",
+            minzoom: 0,
+            maxzoom: 19,
+          },
+        ],
+      },
+      center: uzbekistanCenter,
+      zoom: 4,
+      minZoom: 3,
+      maxZoom: 6,
+      attributionControl: false,
+    })
+
+    // Disable scroll zoom for better UX
+    map.current.scrollZoom.disable()
+
+    // Create custom marker element
+    const markerElement = document.createElement("div")
+    markerElement.className = "uzbekistan-marker"
+    markerElement.innerHTML = `
+      <div class="marker-pulse"></div>
+      <div class="marker-pulse-delay"></div>
+      <div class="marker-center">
+        <span>UZ</span>
+      </div>
+    `
+    markerRef.current = markerElement
+
+    // Add marker at Uzbekistan
+    new maplibregl.Marker({ element: markerElement })
+      .setLngLat(uzbekistanCenter)
+      .addTo(map.current)
+
+    // Add navigation controls
+    map.current.addControl(
+      new maplibregl.NavigationControl({ showCompass: false }),
+      "top-right"
+    )
+
+    return () => {
+      if (map.current) {
+        map.current.remove()
+        map.current = null
+      }
+    }
+  }, [])
+
+  return (
+    <>
+      <style jsx global>{`
+        .uzbekistan-marker {
+          position: relative;
+          width: 48px;
+          height: 48px;
+          cursor: pointer;
+        }
+        
+        .marker-pulse,
+        .marker-pulse-delay {
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          border: 2px solid rgba(160, 160, 160, 0.6);
+          animation: markerPing 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        
+        .marker-pulse-delay {
+          animation-delay: 0.8s;
+        }
+        
+        .marker-center {
+          position: absolute;
+          inset: 8px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(145deg, #ffffff 0%, #e8e8e8 60%, #d4d4d4 100%);
+          box-shadow: 0 4px 15px rgba(100, 100, 100, 0.4), 
+                      inset 0 2px 0 rgba(255, 255, 255, 1), 
+                      inset 0 -2px 4px rgba(180, 180, 180, 0.3);
+          border: 1.5px solid rgba(200, 200, 200, 0.6);
+          transition: transform 0.3s ease;
+        }
+        
+        .uzbekistan-marker:hover .marker-center {
+          transform: scale(1.1);
+        }
+        
+        .marker-center span {
+          font-weight: 700;
+          font-size: 11px;
+          background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        
+        @keyframes markerPing {
+          0% {
+            transform: scale(0.8);
+            opacity: 1;
+          }
+          75%, 100% {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+        
+        .maplibregl-ctrl-group {
+          background: linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 100%) !important;
+          border: 1px solid rgba(200, 200, 200, 0.5) !important;
+          box-shadow: 0 4px 15px rgba(150, 150, 150, 0.2) !important;
+        }
+        
+        .maplibregl-ctrl-group button {
+          background: transparent !important;
+          border-bottom: 1px solid rgba(200, 200, 200, 0.3) !important;
+        }
+        
+        .maplibregl-ctrl-group button:hover {
+          background: rgba(255, 255, 255, 0.5) !important;
+        }
+      `}</style>
+      <div 
+        ref={mapContainer} 
+        className="w-full h-full rounded-3xl"
+        style={{ minHeight: "100%" }}
+      />
+    </>
+  )
+}
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   const [count, setCount] = useState(0)
@@ -220,7 +387,7 @@ export function WhyUzbekistanSection({ data }: WhyUzbekistanSectionProps) {
 
           <div className="relative group overflow-hidden rounded-3xl">
             <div
-              className="aspect-square rounded-3xl flex items-center justify-center transition-all duration-500"
+              className="aspect-square rounded-3xl overflow-hidden transition-all duration-500"
               style={{
                 background:
                   "linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 25%, #f5f5f5 50%, #e0e0e0 75%, #d8d8d8 100%)",
@@ -229,59 +396,11 @@ export function WhyUzbekistanSection({ data }: WhyUzbekistanSectionProps) {
                 border: "1px solid rgba(200,200,200,0.5)",
               }}
             >
-              {/* Glossy sheen overlay */}
-              <div
-                className="absolute inset-0 pointer-events-none rounded-3xl"
-                style={{
-                  background:
-                    "linear-gradient(160deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.2) 35%, transparent 60%)",
-                }}
-              />
-              {/* Moving light sweep on hover */}
-              <div
-                className="absolute top-0 bottom-0 w-1/2 -left-1/2 group-hover:left-full transition-all duration-700 pointer-events-none rounded-3xl"
-                style={{
-                  background:
-                    "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)",
-                }}
-              />
               {/* Top edge mirror line */}
-              <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white to-transparent rounded-3xl" />
-
-              <div className="relative w-64 h-64">
-                <div
-                  className="absolute inset-0 rounded-full border-2 border-[#c0c0c0]/30 animate-ping"
-                  style={{ animationDuration: "3s" }}
-                />
-                <div
-                  className="absolute inset-4 rounded-full border-2 border-[#c0c0c0]/40 animate-ping"
-                  style={{ animationDuration: "3s", animationDelay: "0.5s" }}
-                />
-                <div
-                  className="absolute inset-8 rounded-full border-2 border-[#c0c0c0]/50 animate-ping"
-                  style={{ animationDuration: "3s", animationDelay: "1s" }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div
-                    className="w-24 h-24 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110"
-                    style={{
-                      background: "linear-gradient(145deg, #ffffff 0%, #e8e8e8 60%, #d4d4d4 100%)",
-                      boxShadow:
-                        "0 6px 25px rgba(150,150,150,0.3), inset 0 2px 0 rgba(255,255,255,1), inset 0 -2px 4px rgba(180,180,180,0.3)",
-                      border: "1.5px solid rgba(200,200,200,0.6)",
-                    }}
-                  >
-                    <span
-                      className="font-bold text-lg bg-clip-text text-transparent"
-                      style={{
-                        backgroundImage: "linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%)",
-                      }}
-                    >
-                      UZ
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white to-transparent z-10" />
+              
+              {/* Central Asia Map */}
+              <CentralAsiaMap />
             </div>
           </div>
         </div>
