@@ -3,12 +3,6 @@
 import { useEffect, useState, useRef } from "react"
 import { TrendingUp, Users, Building, Plane, Globe, Star } from "lucide-react"
 import type { WhyUzbekistanSettings } from "@/sanity/lib/types"
-import dynamic from "next/dynamic"
-
-const CentralAsiaMap = dynamic(
-  () => import("@/components/central-asia-map").then((m) => m.CentralAsiaMap),
-  { ssr: false, loading: () => <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">Loading map...</div> }
-)
 
 const iconMap = {
   "trending-up": TrendingUp,
@@ -226,7 +220,7 @@ export function WhyUzbekistanSection({ data }: WhyUzbekistanSectionProps) {
 
           <div className="relative group overflow-hidden rounded-3xl">
             <div
-              className="aspect-square rounded-3xl flex items-center justify-center transition-all duration-500 overflow-hidden"
+              className="aspect-square rounded-3xl flex items-center justify-center transition-all duration-500"
               style={{
                 background:
                   "linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 25%, #f5f5f5 50%, #e0e0e0 75%, #d8d8d8 100%)",
@@ -237,17 +231,56 @@ export function WhyUzbekistanSection({ data }: WhyUzbekistanSectionProps) {
             >
               {/* Glossy sheen overlay */}
               <div
-                className="absolute inset-0 pointer-events-none rounded-3xl z-10"
+                className="absolute inset-0 pointer-events-none rounded-3xl"
                 style={{
                   background:
-                    "linear-gradient(160deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 35%, transparent 60%)",
+                    "linear-gradient(160deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.2) 35%, transparent 60%)",
+                }}
+              />
+              {/* Moving light sweep on hover */}
+              <div
+                className="absolute top-0 bottom-0 w-1/2 -left-1/2 group-hover:left-full transition-all duration-700 pointer-events-none rounded-3xl"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)",
                 }}
               />
               {/* Top edge mirror line */}
-              <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white to-transparent rounded-3xl z-10" />
+              <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white to-transparent rounded-3xl" />
 
-              <div className="relative w-full h-full p-4">
-                <CentralAsiaMap />
+              <div className="relative w-64 h-64">
+                <div
+                  className="absolute inset-0 rounded-full border-2 border-[#c0c0c0]/30 animate-ping"
+                  style={{ animationDuration: "3s" }}
+                />
+                <div
+                  className="absolute inset-4 rounded-full border-2 border-[#c0c0c0]/40 animate-ping"
+                  style={{ animationDuration: "3s", animationDelay: "0.5s" }}
+                />
+                <div
+                  className="absolute inset-8 rounded-full border-2 border-[#c0c0c0]/50 animate-ping"
+                  style={{ animationDuration: "3s", animationDelay: "1s" }}
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    className="w-24 h-24 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110"
+                    style={{
+                      background: "linear-gradient(145deg, #ffffff 0%, #e8e8e8 60%, #d4d4d4 100%)",
+                      boxShadow:
+                        "0 6px 25px rgba(150,150,150,0.3), inset 0 2px 0 rgba(255,255,255,1), inset 0 -2px 4px rgba(180,180,180,0.3)",
+                      border: "1.5px solid rgba(200,200,200,0.6)",
+                    }}
+                  >
+                    <span
+                      className="font-bold text-lg bg-clip-text text-transparent"
+                      style={{
+                        backgroundImage: "linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%)",
+                      }}
+                    >
+                      UZ
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
