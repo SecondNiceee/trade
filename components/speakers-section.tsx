@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { ArrowRight, Linkedin, Twitter, Sparkles } from "lucide-react"
 import { urlForImage } from "@/sanity/lib/image"
 import type { Speaker, SiteSettings } from "@/sanity/lib/types"
+import { SectionSparkles } from "@/components/silver-accents"
 
 interface SpeakersSectionProps {
   speakers: Speaker[]
@@ -61,6 +62,7 @@ export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
   return (
     <section id="speakers" ref={sectionRef} className="relative py-24 bg-[#f8f8f8] overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-white via-[#fafafa] to-white" />
+      <SectionSparkles />
       
       {/* Premium metallic accents */}
       <div className="absolute top-1/3 -left-32 w-[400px] h-[400px] rounded-full blur-[100px] animate-pulse" style={{ background: 'radial-gradient(circle, rgba(192,192,192,0.25) 0%, transparent 70%)' }} />

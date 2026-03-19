@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Check, CreditCard, Landmark, Sparkles, Wallet } from "lucide-react"
 import type { Ticket, SiteSettings } from "@/sanity/lib/types"
+import { SectionSparkles } from "@/components/silver-accents"
 
 interface TicketsSectionProps {
   tickets: Ticket[]
@@ -35,9 +36,10 @@ export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
   const subtitle = settings?.ticketsSectionSubtitle || "Early bird pricing available until August 31, 2026. Group discounts available for 5+ tickets."
 
   return (
-    <section id="tickets" ref={sectionRef} className="relative py-24 bg-white overflow-hidden">
+    <section id="tickets" ref={sectionRef} className="relative py-12 bg-white overflow-hidden">
       {/* Premium metallic background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#fafafa] via-white to-[#fafafa]" />
+      <SectionSparkles />
       
       {/* Metallic glow orbs */}
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] rounded-full blur-[120px]" style={{ background: 'radial-gradient(circle, rgba(192,192,192,0.15) 0%, transparent 70%)' }} />

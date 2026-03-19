@@ -5,6 +5,7 @@ import { Crown, Award, Star, Handshake, Sparkles } from "lucide-react"
 import { ShimmerButton } from "@/components/shimmer-button"
 import { urlForImage } from "@/sanity/lib/image"
 import type { Partner, SiteSettings } from "@/sanity/lib/types"
+import { SectionSparkles } from "@/components/silver-accents"
 
 interface PartnersSectionProps {
   partners: Partner[]
@@ -52,8 +53,9 @@ export function PartnersSection({ partners, settings }: PartnersSectionProps) {
   })).filter(t => t.partners.length > 0)
 
   return (
-    <section id="partners" ref={sectionRef} className="relative py-24 bg-white overflow-hidden">
+    <section id="partners" ref={sectionRef} className="relative py-12 bg-white overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#fafafa] via-white to-[#fafafa]" />
+      <SectionSparkles />
       
       {/* Premium metallic background accents */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[120px]" style={{ background: 'radial-gradient(circle, rgba(192,192,192,0.15) 0%, transparent 70%)' }} />

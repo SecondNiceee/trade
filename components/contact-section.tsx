@@ -7,7 +7,7 @@ export function ContactSection() {
   const [formType, setFormType] = useState<"speaker" | "sponsor">("speaker")
 
   return (
-    <section id="contact" className="relative py-24 bg-white overflow-hidden">
+    <section id="contact" className="relative py-12 bg-white overflow-hidden">
       {/* Premium metallic background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#fafafa] via-white to-[#fafafa]" />
       

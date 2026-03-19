@@ -9,6 +9,40 @@ interface HeroSectionProps {
   data?: HeroSettings | null
 }
 
+// Static sparkle positions — fixed so they don't re-render
+const SPARKLES = [
+  { id: 1,  x: 10,  y: 15,  size: 5,   opacity: 0.9,  rotate: 0   },
+  { id: 2,  x: 30,  y: 8,   size: 6,   opacity: 1,    rotate: 30  },
+  { id: 3,  x: 50,  y: 20,  size: 5.5, opacity: 0.95, rotate: 60  },
+  { id: 4,  x: 75,  y: 12,  size: 5,   opacity: 0.9,  rotate: 45  },
+  { id: 5,  x: 92,  y: 25,  size: 5.5, opacity: 1,    rotate: 15  },
+  { id: 6,  x: 12,  y: 75,  size: 5,   opacity: 0.85, rotate: 20  },
+  { id: 7,  x: 35,  y: 85,  size: 6,   opacity: 0.95, rotate: 45  },
+  { id: 8,  x: 55,  y: 70,  size: 5,   opacity: 0.9,  rotate: 0   },
+  { id: 9,  x: 78,  y: 80,  size: 5.5, opacity: 1,    rotate: 30  },
+  { id: 10, x: 93,  y: 65,  size: 5,   opacity: 0.85, rotate: 60  },
+]
+
+function SparkleIcon({ size, opacity, rotate }: { size: number; opacity: number; rotate: number }) {
+  return (
+    <svg
+      width={size * 4}
+      height={size * 4}
+      viewBox="0 0 16 16"
+      fill="none"
+      style={{ 
+        opacity, 
+        transform: `rotate(${rotate}deg)`,
+      }}
+    >
+      <path
+        d="M8 0 L9.2 6.8 L16 8 L9.2 9.2 L8 16 L6.8 9.2 L0 8 L6.8 6.8 Z"
+        fill="#d0d0d0"
+      />
+    </svg>
+  )
+}
+
 export function HeroSection({ data }: HeroSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
 
@@ -32,6 +66,19 @@ export function HeroSection({ data }: HeroSectionProps) {
     <section id="hero" className="relative min-h-screen flex flex-col overflow-hidden">
       <AnimatedBackground />
 
+      {/* Static silver sparkles */}
+      <div className="absolute inset-0 z-[1] pointer-events-none">
+        {SPARKLES.map((s) => (
+          <div
+            key={s.id}
+            className="absolute"
+            style={{ left: `${s.x}%`, top: `${s.y}%`, transform: 'translate(-50%, -50%)' }}
+          >
+            <SparkleIcon size={s.size} opacity={s.opacity} rotate={s.rotate} />
+          </div>
+        ))}
+      </div>
+
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-12 pt-24 pb-12">
         <div className="text-center max-w-6xl mx-auto">
           <div
@@ -54,7 +101,7 @@ export function HeroSection({ data }: HeroSectionProps) {
           </div>
 
           <h1
-            className={`font-bold leading-none mb-4 text-balance transition-all duration-1000 delay-200 ${
+            className={`font-bold leading-none mb-4 transition-all duration-1000 delay-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
@@ -70,6 +117,7 @@ export function HeroSection({ data }: HeroSectionProps) {
                 filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.5))',
                 display: 'inline-block',
                 overflow: 'visible',
+                paddingRight: '0.08em',
               }}
             >
               {title}
