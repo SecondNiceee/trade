@@ -23,17 +23,6 @@ export interface AboutKeyPoint {
 export interface SiteSettings {
   siteTitle?: string
   siteDescription?: string
-  speakersSectionTitle?: string
-  speakersSectionSubtitle?: string
-  speakerCategories?: string[]
-  agendaSectionTitle?: string
-  agendaSectionSubtitle?: string
-  ticketsSectionTitle?: string
-  ticketsSectionSubtitle?: string
-  partnersSectionTitle?: string
-  partnersSectionSubtitle?: string
-  sideEventsSectionTitle?: string
-  sideEventsSectionSubtitle?: string
   contactEmail?: string
   socialLinks?: {
     twitter?: string
@@ -131,6 +120,7 @@ export interface TicketsSection {
 }
 
 export interface SpeakersSection {
+  sectionLabel?: string
   sectionTitle?: string
   sectionSubtitle?: string
   categories?: string[]
@@ -155,6 +145,16 @@ export interface SideEventsSection {
   events?: SideEvent[]
 }
 
+export interface ContactSection {
+  sectionLabel?: string
+  sectionTitle?: string
+  sectionSubtitle?: string
+  speakerFormTitle?: string
+  speakerFormDescription?: string
+  sponsorFormTitle?: string
+  sponsorFormDescription?: string
+}
+
 export interface PageData {
   heroSettings: HeroSettings | null
   siteSettings: SiteSettings | null
@@ -164,6 +164,7 @@ export interface PageData {
   agendaSection: AgendaSection | null
   partnersSection: PartnersSection | null
   sideEventsSection: SideEventsSection | null
+  contactSection: ContactSection | null
   // Legacy - for backwards compatibility
   speakers: Speaker[]
   agendaDays: AgendaDay[]

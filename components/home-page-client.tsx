@@ -24,27 +24,26 @@ export function HomePageClient({ data }: HomePageClientProps) {
       <HeroSection data={data.heroSettings} />
       <WhyUzbekistanSection data={data.whyUzbekistanSettings} />
       <SpeakersSection 
-        speakers={data.speakers} 
-        settings={data.siteSettings} 
+        speakers={data.speakersSection?.speakers || data.speakers} 
+        sectionSettings={data.speakersSection}
       />
       <AgendaSection 
-        days={data.agendaDays} 
-        settings={data.siteSettings} 
+        days={data.agendaSection?.days || data.agendaDays} 
+        sectionSettings={data.agendaSection}
       />
       <SideEventsSection 
-        events={data.sideEvents} 
-        settings={data.siteSettings} 
+        events={data.sideEventsSection?.events || data.sideEvents} 
+        sectionSettings={data.sideEventsSection}
       />
       <PartnersSection 
-        partners={data.partners} 
-        settings={data.siteSettings} 
+        partners={data.partnersSection?.partners || data.partners} 
+        sectionSettings={data.partnersSection}
       />
       <TicketsSection 
         tickets={data.tickets} 
-        settings={data.siteSettings}
         sectionSettings={data.ticketsSection}
       />
-      <ContactSection />
+      <ContactSection sectionSettings={data.contactSection} />
       <MediaSection />
       <SiteFooter />
     </div>

@@ -2,16 +2,14 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Check, CreditCard, Landmark, Sparkles, Wallet } from "lucide-react"
-import type { Ticket, SiteSettings, TicketsSection as TicketsSectionType, TicketItem } from "@/sanity/lib/types"
-import { SectionSparkles } from "@/components/silver-accents"
+import type { Ticket, TicketsSection as TicketsSectionType, TicketItem } from "@/sanity/lib/types"
 
 interface TicketsSectionProps {
   tickets: Ticket[]
-  settings?: SiteSettings | null
   sectionSettings?: TicketsSectionType | null
 }
 
-export function TicketsSection({ tickets, settings, sectionSettings }: TicketsSectionProps) {
+export function TicketsSection({ tickets, sectionSettings }: TicketsSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
@@ -33,9 +31,8 @@ export function TicketsSection({ tickets, settings, sectionSettings }: TicketsSe
     return () => observer.disconnect()
   }, [])
 
-  // Prefer new section settings, fall back to legacy siteSettings
-  const title = sectionSettings?.sectionTitle || settings?.ticketsSectionTitle || "Choose Your Experience"
-  const subtitle = sectionSettings?.sectionSubtitle || settings?.ticketsSectionSubtitle || "Early bird pricing available until August 31, 2026. Group discounts available for 5+ tickets."
+  const title = sectionSettings?.sectionTitle || "Choose Your Experience"
+  const subtitle = sectionSettings?.sectionSubtitle || "Early bird pricing available until August 31, 2026. Group discounts available for 5+ tickets."
   
   // Use tickets from section settings if available, otherwise use legacy tickets
   const ticketItems = sectionSettings?.tickets?.map((t, i) => ({

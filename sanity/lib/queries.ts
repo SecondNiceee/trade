@@ -26,17 +26,6 @@ export const whyUzbekistanSettingsQuery = groq`*[_type == "whyUzbekistanSettings
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   siteTitle,
   siteDescription,
-  speakersSectionTitle,
-  speakersSectionSubtitle,
-  speakerCategories,
-  agendaSectionTitle,
-  agendaSectionSubtitle,
-  ticketsSectionTitle,
-  ticketsSectionSubtitle,
-  partnersSectionTitle,
-  partnersSectionSubtitle,
-  sideEventsSectionTitle,
-  sideEventsSectionSubtitle,
   contactEmail,
   socialLinks
 }`
@@ -100,6 +89,7 @@ export const ticketsSectionQuery = groq`*[_type == "ticketsSection"][0]{
 }`
 
 export const speakersSectionQuery = groq`*[_type == "speakersSection"][0]{
+  sectionLabel,
   sectionTitle,
   sectionSubtitle,
   categories,
@@ -176,17 +166,6 @@ export const pageDataQuery = groq`{
   "siteSettings": *[_type == "siteSettings"][0]{
     siteTitle,
     siteDescription,
-    speakersSectionTitle,
-    speakersSectionSubtitle,
-    speakerCategories,
-    agendaSectionTitle,
-    agendaSectionSubtitle,
-    ticketsSectionTitle,
-    ticketsSectionSubtitle,
-    partnersSectionTitle,
-    partnersSectionSubtitle,
-    sideEventsSectionTitle,
-    sideEventsSectionSubtitle,
     contactEmail,
     socialLinks
   },
@@ -196,6 +175,7 @@ export const pageDataQuery = groq`{
     tickets
   },
   "speakersSection": *[_type == "speakersSection"][0]{
+    sectionLabel,
     sectionTitle,
     sectionSubtitle,
     categories,
@@ -244,6 +224,15 @@ export const pageDataQuery = groq`{
       icon,
       colorTheme
     }
+  },
+  "contactSection": *[_type == "contactSection"][0]{
+    sectionLabel,
+    sectionTitle,
+    sectionSubtitle,
+    speakerFormTitle,
+    speakerFormDescription,
+    sponsorFormTitle,
+    sponsorFormDescription
   },
   "speakers": *[_type == "speaker"] | order(order asc){
     _id,

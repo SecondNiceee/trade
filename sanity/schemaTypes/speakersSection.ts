@@ -8,6 +8,12 @@ export const speakersSection = defineType({
   icon: User,
   fields: [
     defineField({
+      name: 'sectionLabel',
+      title: 'Лейбл Секции (мелкий текст сверху)',
+      type: 'string',
+      initialValue: 'Featured Speakers',
+    }),
+    defineField({
       name: 'sectionTitle',
       title: 'Заголовок Секции',
       type: 'string',
