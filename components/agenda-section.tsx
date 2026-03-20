@@ -2,11 +2,10 @@
 
 import { useState, useEffect, useRef } from "react"
 import { MapPin, Sparkles } from "lucide-react"
-import type { AgendaDay, SiteSettings, AgendaSection as AgendaSectionType } from "@/sanity/lib/types"
+import type { AgendaDay, AgendaSection as AgendaSectionType } from "@/sanity/lib/types"
 
 interface AgendaSectionProps {
   days: AgendaDay[]
-  settings?: SiteSettings | null
   sectionSettings?: AgendaSectionType | null
 }
 
@@ -19,7 +18,7 @@ const typeColors: Record<string, { bg: string; text: string; glow: string }> = {
   break: { bg: "bg-gray-100", text: "text-gray-600", glow: "shadow-gray-500/10" },
 }
 
-export function AgendaSection({ days, settings, sectionSettings }: AgendaSectionProps) {
+export function AgendaSection({ days, sectionSettings }: AgendaSectionProps) {
   const [activeDay, setActiveDay] = useState<number | null>(null)
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
@@ -41,9 +40,8 @@ export function AgendaSection({ days, settings, sectionSettings }: AgendaSection
     return () => observer.disconnect()
   }, [])
 
-  // Приоритет: sectionSettings (отдельная схема) -> settings (siteSettings) -> дефолтные значения
-  const title = sectionSettings?.sectionTitle || settings?.agendaSectionTitle || "Two Days of Insights"
-  const subtitle = sectionSettings?.sectionSubtitle || settings?.agendaSectionSubtitle || "Packed with keynotes, panels, workshops, and networking opportunities."
+  const title = sectionSettings?.sectionTitle || "Two Days of Insights"
+  const subtitle = sectionSettings?.sectionSubtitle || "Packed with keynotes, panels, workshops, and networking opportunities."
 
   return (
     <section id="agenda" ref={sectionRef} className="relative py-12 bg-white overflow-hidden">

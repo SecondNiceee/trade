@@ -3,18 +3,16 @@
 import { useState, useEffect, useRef } from "react"
 import { ArrowRight, Linkedin, Twitter, Sparkles } from "lucide-react"
 import { urlForImage } from "@/sanity/lib/image"
-import type { Speaker, SiteSettings, SpeakersSection as SpeakersSectionType } from "@/sanity/lib/types"
-import { SectionSparkles } from "@/components/silver-accents"
+import type { Speaker, SpeakersSection as SpeakersSectionType } from "@/sanity/lib/types"
 
 interface SpeakersSectionProps {
   speakers: Speaker[]
-  settings?: SiteSettings | null
   sectionSettings?: SpeakersSectionType | null
 }
 
 const SPEAKERS_PER_PAGE = 12
 
-export function SpeakersSection({ speakers, settings, sectionSettings }: SpeakersSectionProps) {
+export function SpeakersSection({ speakers, sectionSettings }: SpeakersSectionProps) {
   const [activeCategory, setActiveCategory] = useState("All")
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -38,11 +36,10 @@ export function SpeakersSection({ speakers, settings, sectionSettings }: Speaker
     return () => observer.disconnect()
   }, [])
 
-  // Приоритет: sectionSettings (отдельная схема) -> settings (siteSettings) -> дефолтные значения
-  const label = sectionSettings?.sectionLabel || settings?.speakersSectionLabel || "Featured Speakers"
-  const title = sectionSettings?.sectionTitle || settings?.speakersSectionTitle || "World-Class Thought Leaders"
-  const subtitle = sectionSettings?.sectionSubtitle || settings?.speakersSectionSubtitle || "Learn from industry pioneers and visionaries shaping the future of global business."
-  const categories = ["All", ...(sectionSettings?.categories || settings?.speakerCategories || ["Technology", "Finance", "Government", "Sustainability"])]
+  const label = sectionSettings?.sectionLabel || "Featured Speakers"
+  const title = sectionSettings?.sectionTitle || "World-Class Thought Leaders"
+  const subtitle = sectionSettings?.sectionSubtitle || "Learn from industry pioneers and visionaries shaping the future of global business."
+  const categories = ["All", ...(sectionSettings?.categories || ["Technology", "Finance", "Government", "Sustainability"])]
 
   const filteredSpeakers = activeCategory === "All" 
     ? speakers 

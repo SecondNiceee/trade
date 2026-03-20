@@ -26,18 +26,6 @@ export const whyUzbekistanSettingsQuery = groq`*[_type == "whyUzbekistanSettings
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   siteTitle,
   siteDescription,
-  speakersSectionLabel,
-  speakersSectionTitle,
-  speakersSectionSubtitle,
-  speakerCategories,
-  agendaSectionTitle,
-  agendaSectionSubtitle,
-  ticketsSectionTitle,
-  ticketsSectionSubtitle,
-  partnersSectionTitle,
-  partnersSectionSubtitle,
-  sideEventsSectionTitle,
-  sideEventsSectionSubtitle,
   contactEmail,
   socialLinks
 }`
@@ -178,18 +166,6 @@ export const pageDataQuery = groq`{
   "siteSettings": *[_type == "siteSettings"][0]{
     siteTitle,
     siteDescription,
-    speakersSectionLabel,
-    speakersSectionTitle,
-    speakersSectionSubtitle,
-    speakerCategories,
-    agendaSectionTitle,
-    agendaSectionSubtitle,
-    ticketsSectionTitle,
-    ticketsSectionSubtitle,
-    partnersSectionTitle,
-    partnersSectionSubtitle,
-    sideEventsSectionTitle,
-    sideEventsSectionSubtitle,
     contactEmail,
     socialLinks
   },

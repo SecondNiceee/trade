@@ -2,11 +2,10 @@
 
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, Crown, Wine, Briefcase, Star, Sparkles } from "lucide-react"
-import type { SideEvent, SiteSettings, SideEventsSection as SideEventsSectionType } from "@/sanity/lib/types"
+import type { SideEvent, SideEventsSection as SideEventsSectionType } from "@/sanity/lib/types"
 
 interface SideEventsSectionProps {
   events: SideEvent[]
-  settings?: SiteSettings | null
   sectionSettings?: SideEventsSectionType | null
 }
 
@@ -44,7 +43,7 @@ const colorThemes = {
   },
 }
 
-export function SideEventsSection({ events, settings, sectionSettings }: SideEventsSectionProps) {
+export function SideEventsSection({ events, sectionSettings }: SideEventsSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
@@ -66,9 +65,8 @@ export function SideEventsSection({ events, settings, sectionSettings }: SideEve
     return () => observer.disconnect()
   }, [])
 
-  // Приоритет: sectionSettings (отдельная схема) -> settings (siteSettings) -> дефолтные значения
-  const title = sectionSettings?.sectionTitle || settings?.sideEventsSectionTitle || "Premium Experiences"
-  const subtitle = sectionSettings?.sectionSubtitle || settings?.sideEventsSectionSubtitle || "Exclusive gatherings and curated experiences for our distinguished guests."
+  const title = sectionSettings?.sectionTitle || "Premium Experiences"
+  const subtitle = sectionSettings?.sectionSubtitle || "Exclusive gatherings and curated experiences for our distinguished guests."
 
   return (
     <section ref={sectionRef} className="relative py-12 bg-gray-50 overflow-hidden">
