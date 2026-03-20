@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useRef } from "react"
 import { MapPin, Sparkles } from "lucide-react"
-import type { AgendaDay, SiteSettings } from "@/sanity/lib/types"
+import type { AgendaDay, SiteSettings, AgendaSection as AgendaSectionType } from "@/sanity/lib/types"
 
 interface AgendaSectionProps {
   days: AgendaDay[]
   settings?: SiteSettings | null
+  sectionSettings?: AgendaSectionType | null
 }
 
 const typeColors: Record<string, { bg: string; text: string; glow: string }> = {
@@ -18,7 +19,7 @@ const typeColors: Record<string, { bg: string; text: string; glow: string }> = {
   break: { bg: "bg-gray-100", text: "text-gray-600", glow: "shadow-gray-500/10" },
 }
 
-export function AgendaSection({ days, settings }: AgendaSectionProps) {
+export function AgendaSection({ days, settings, sectionSettings }: AgendaSectionProps) {
   const [activeDay, setActiveDay] = useState<number | null>(null)
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)

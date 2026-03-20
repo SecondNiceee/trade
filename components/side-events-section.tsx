@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, Crown, Wine, Briefcase, Star, Sparkles } from "lucide-react"
-import type { SideEvent, SiteSettings } from "@/sanity/lib/types"
+import type { SideEvent, SiteSettings, SideEventsSection as SideEventsSectionType } from "@/sanity/lib/types"
 
 interface SideEventsSectionProps {
   events: SideEvent[]
   settings?: SiteSettings | null
+  sectionSettings?: SideEventsSectionType | null
 }
 
 const iconMap = {
@@ -43,7 +44,7 @@ const colorThemes = {
   },
 }
 
-export function SideEventsSection({ events, settings }: SideEventsSectionProps) {
+export function SideEventsSection({ events, settings, sectionSettings }: SideEventsSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)

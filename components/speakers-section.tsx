@@ -3,17 +3,18 @@
 import { useState, useEffect, useRef } from "react"
 import { ArrowRight, Linkedin, Twitter, Sparkles } from "lucide-react"
 import { urlForImage } from "@/sanity/lib/image"
-import type { Speaker, SiteSettings } from "@/sanity/lib/types"
+import type { Speaker, SiteSettings, SpeakersSection as SpeakersSectionType } from "@/sanity/lib/types"
 import { SectionSparkles } from "@/components/silver-accents"
 
 interface SpeakersSectionProps {
   speakers: Speaker[]
   settings?: SiteSettings | null
+  sectionSettings?: SpeakersSectionType | null
 }
 
 const SPEAKERS_PER_PAGE = 12
 
-export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
+export function SpeakersSection({ speakers, settings, sectionSettings }: SpeakersSectionProps) {
   const [activeCategory, setActiveCategory] = useState("All")
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -37,9 +38,10 @@ export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
     return () => observer.disconnect()
   }, [])
 
-  const title = settings?.speakersSectionTitle || "World-Class Thought Leaders"
-  const subtitle = settings?.speakersSectionSubtitle || "Learn from industry pioneers and visionaries shaping the future of global business."
-  const categories = ["All", ...(settings?.speakerCategories || ["Technology", "Finance", "Government", "Sustainability"])]
+  // Prefer new section settings, fall back to legacy siteSettings
+  const title = sectionSettings?.sectionTitle || settings?.speakersSectionTitle || "World-Class Thought Leaders"
+  const subtitle = sectionSettings?.sectionSubtitle || settings?.speakersSectionSubtitle || "Learn from industry pioneers and visionaries shaping the future of global business."
+  const categories = ["All", ...(sectionSettings?.categories || settings?.speakerCategories || ["Technology", "Finance", "Government", "Sustainability"])]
 
   const filteredSpeakers = activeCategory === "All" 
     ? speakers 

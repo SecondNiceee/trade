@@ -136,6 +136,8 @@ export default async function HomePage() {
   try {
     const sanityData = await sanityFetch<PageData>({
       query: pageDataQuery,
+      revalidate: 0, // No caching - always fetch fresh data from Sanity
+      tags: ['sanity-page-data'], // For manual revalidation if needed
     })
     
     // Merge Sanity data with defaults (use Sanity if available, else default)
