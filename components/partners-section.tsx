@@ -4,12 +4,12 @@ import { useEffect, useRef, useState } from "react"
 import { Crown, Award, Star, Handshake, Sparkles } from "lucide-react"
 import { ShimmerButton } from "@/components/shimmer-button"
 import { urlForImage } from "@/sanity/lib/image"
-import type { Partner, SiteSettings } from "@/sanity/lib/types"
-import { SectionSparkles } from "@/components/silver-accents"
+import type { Partner, SiteSettings, PartnersSection as PartnersSectionType } from "@/sanity/lib/types"
 
 interface PartnersSectionProps {
   partners: Partner[]
   settings?: SiteSettings | null
+  sectionSettings?: PartnersSectionType | null
 }
 
 const tierConfig = {
@@ -19,7 +19,7 @@ const tierConfig = {
   "Media Partners": { icon: Handshake, color: "from-blue-100 to-cyan-50" },
 }
 
-export function PartnersSection({ partners, settings }: PartnersSectionProps) {
+export function PartnersSection({ partners, settings, sectionSettings }: PartnersSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredPartner, setHoveredPartner] = useState<string | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
@@ -41,8 +41,9 @@ export function PartnersSection({ partners, settings }: PartnersSectionProps) {
     return () => observer.disconnect()
   }, [])
 
-  const title = settings?.partnersSectionTitle || "Trusted by Industry Leaders"
-  const subtitle = settings?.partnersSectionSubtitle || "Join our network of prestigious partners driving innovation across the Silk Road region."
+  // Приоритет: sectionSettings (отдельная схема) -> settings (siteSettings) -> дефолтные значения
+  const title = sectionSettings?.sectionTitle || settings?.partnersSectionTitle || "Trusted by Industry Leaders"
+  const subtitle = sectionSettings?.sectionSubtitle || settings?.partnersSectionSubtitle || "Join our network of prestigious partners driving innovation across the Silk Road region."
 
   // Group partners by tier
   const tiers = ["Platinum", "Gold", "Silver", "Media Partners"] as const
