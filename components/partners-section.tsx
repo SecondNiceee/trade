@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Crown, Award, Star, Handshake, Sparkles } from "lucide-react"
 import { ShimmerButton } from "@/components/shimmer-button"
+import { SectionSparkles } from "@/components/silver-accents"
 import { urlForImage } from "@/sanity/lib/image"
 import type { Partner, SiteSettings, PartnersSection as PartnersSectionType } from "@/sanity/lib/types"
 
