@@ -20,6 +20,12 @@ export const siteSettings = defineType({
       rows: 3,
     }),
     defineField({
+      name: 'speakersSectionLabel',
+      title: 'Лейбл Секции Спикеров (мелкий текст сверху)',
+      type: 'string',
+      initialValue: 'Featured Speakers',
+    }),
+    defineField({
       name: 'speakersSectionTitle',
       title: 'Заголовок Секции Спикеров',
       type: 'string',

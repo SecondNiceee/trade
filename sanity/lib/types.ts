@@ -23,6 +23,7 @@ export interface AboutKeyPoint {
 export interface SiteSettings {
   siteTitle?: string
   siteDescription?: string
+  speakersSectionLabel?: string
   speakersSectionTitle?: string
   speakersSectionSubtitle?: string
   speakerCategories?: string[]

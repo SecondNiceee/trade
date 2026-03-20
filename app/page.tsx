@@ -40,6 +40,7 @@ const defaultData: PageData = {
   },
   siteSettings: {
     siteTitle: "SILKON 2026",
+    speakersSectionLabel: "Featured Speakers",
     speakersSectionTitle: "World-Class Thought Leaders",
     speakersSectionSubtitle: "Learn from industry pioneers and visionaries shaping the future of global business.",
     speakerCategories: ["Technology", "Finance", "Government", "Sustainability"],

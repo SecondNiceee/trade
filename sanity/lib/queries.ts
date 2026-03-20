@@ -26,6 +26,7 @@ export const whyUzbekistanSettingsQuery = groq`*[_type == "whyUzbekistanSettings
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   siteTitle,
   siteDescription,
+  speakersSectionLabel,
   speakersSectionTitle,
   speakersSectionSubtitle,
   speakerCategories,
@@ -176,6 +177,7 @@ export const pageDataQuery = groq`{
   "siteSettings": *[_type == "siteSettings"][0]{
     siteTitle,
     siteDescription,
+    speakersSectionLabel,
     speakersSectionTitle,
     speakersSectionSubtitle,
     speakerCategories,

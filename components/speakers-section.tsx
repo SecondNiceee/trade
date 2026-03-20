@@ -37,6 +37,7 @@ export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
     return () => observer.disconnect()
   }, [])
 
+  const label = settings?.speakersSectionLabel || "Featured Speakers"
   const title = settings?.speakersSectionTitle || "World-Class Thought Leaders"
   const subtitle = settings?.speakersSectionSubtitle || "Learn from industry pioneers and visionaries shaping the future of global business."
   const categories = ["All", ...(settings?.speakerCategories || ["Technology", "Finance", "Government", "Sustainability"])]
@@ -79,7 +80,7 @@ export function SpeakersSection({ speakers, settings }: SpeakersSectionProps) {
         >
           <div className="inline-flex items-center gap-2 mb-4">
             <Sparkles className="w-4 h-4 text-gray-600 animate-pulse" />
-            <span className="text-gray-600 text-sm font-semibold tracking-wider uppercase">Featured Speakers</span>
+            <span className="text-gray-600 text-sm font-semibold tracking-wider uppercase">{label}</span>
             <Sparkles className="w-4 h-4 text-gray-600 animate-pulse" />
           </div>
           <h2 className="text-gray-900 text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
