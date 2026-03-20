@@ -5,6 +5,7 @@ import { Crown, Award, Star, Handshake, Sparkles } from "lucide-react"
 import { ShimmerButton } from "@/components/shimmer-button"
 import { SectionSparkles } from "@/components/silver-accents"
 import { urlForImage } from "@/sanity/lib/image"
+
 import type { Partner, PartnersSection as PartnersSectionType } from "@/sanity/lib/types"
 
 interface PartnersSectionProps {
