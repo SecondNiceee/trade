@@ -132,6 +132,7 @@ export interface TicketsSection {
 }
 
 export interface SpeakersSection {
+  sectionLabel?: string
   sectionTitle?: string
   sectionSubtitle?: string
   categories?: string[]

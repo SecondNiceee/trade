@@ -101,6 +101,7 @@ export const ticketsSectionQuery = groq`*[_type == "ticketsSection"][0]{
 }`
 
 export const speakersSectionQuery = groq`*[_type == "speakersSection"][0]{
+  sectionLabel,
   sectionTitle,
   sectionSubtitle,
   categories,
@@ -198,6 +199,7 @@ export const pageDataQuery = groq`{
     tickets
   },
   "speakersSection": *[_type == "speakersSection"][0]{
+    sectionLabel,
     sectionTitle,
     sectionSubtitle,
     categories,

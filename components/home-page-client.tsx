@@ -24,8 +24,9 @@ export function HomePageClient({ data }: HomePageClientProps) {
       <HeroSection data={data.heroSettings} />
       <WhyUzbekistanSection data={data.whyUzbekistanSettings} />
       <SpeakersSection 
-        speakers={data.speakers} 
-        settings={data.siteSettings} 
+        speakers={data.speakersSection?.speakers || data.speakers} 
+        settings={data.siteSettings}
+        sectionSettings={data.speakersSection}
       />
       <AgendaSection 
         days={data.agendaDays} 
