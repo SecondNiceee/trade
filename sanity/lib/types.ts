@@ -116,6 +116,10 @@ export interface TicketItem {
 export interface TicketsSection {
   sectionTitle?: string
   sectionSubtitle?: string
+  paymentMethodCard?: string
+  paymentMethodBank?: string
+  paymentMethodCrypto?: string
+  paymentSecureText?: string
   tickets?: TicketItem[]
 }
 
