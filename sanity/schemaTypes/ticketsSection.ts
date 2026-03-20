@@ -19,6 +19,30 @@ export const ticketsSection = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'paymentMethodCard',
+      title: 'Способ оплаты: Карта',
+      type: 'string',
+      initialValue: 'Visa / Mastercard',
+    }),
+    defineField({
+      name: 'paymentMethodBank',
+      title: 'Способ оплаты: Банк',
+      type: 'string',
+      initialValue: 'Bank Transfer',
+    }),
+    defineField({
+      name: 'paymentMethodCrypto',
+      title: 'Способ оплаты: Крипто',
+      type: 'string',
+      initialValue: 'Pay with USDT/USDC',
+    }),
+    defineField({
+      name: 'paymentSecureText',
+      title: 'Текст о безопасности платежей',
+      type: 'string',
+      initialValue: 'Secure payments powered by Stripe',
+    }),
+    defineField({
       name: 'tickets',
       title: 'Билеты',
       type: 'array',

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { ArrowRight, Linkedin, Twitter, Sparkles } from "lucide-react"
 import { urlForImage } from "@/sanity/lib/image"
+import { SectionSparkles } from "@/components/silver-accents"
 import type { Speaker, SpeakersSection as SpeakersSectionType } from "@/sanity/lib/types"
 
 interface SpeakersSectionProps {

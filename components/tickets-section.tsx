@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Check, CreditCard, Landmark, Sparkles, Wallet } from "lucide-react"
+import { SectionSparkles } from "@/components/silver-accents"
 import type { Ticket, TicketsSection as TicketsSectionType, TicketItem } from "@/sanity/lib/types"
 
 interface TicketsSectionProps {
@@ -33,6 +34,10 @@ export function TicketsSection({ tickets, sectionSettings }: TicketsSectionProps
 
   const title = sectionSettings?.sectionTitle || "Choose Your Experience"
   const subtitle = sectionSettings?.sectionSubtitle || "Early bird pricing available until August 31, 2026. Group discounts available for 5+ tickets."
+  const paymentCard = sectionSettings?.paymentMethodCard || "Visa / Mastercard"
+  const paymentBank = sectionSettings?.paymentMethodBank || "Bank Transfer"
+  const paymentCrypto = sectionSettings?.paymentMethodCrypto || "Pay with USDT/USDC"
+  const paymentSecure = sectionSettings?.paymentSecureText || "Secure payments powered by Stripe"
   
   // Use tickets from section settings if available, otherwise use legacy tickets
   const ticketItems = sectionSettings?.tickets?.map((t, i) => ({
@@ -193,17 +198,17 @@ export function TicketsSection({ tickets, sectionSettings }: TicketsSectionProps
         >
           <div className="flex items-center gap-2 hover:text-gray-600 transition-colors">
             <CreditCard className="w-5 h-5" />
-            <span>Visa / Mastercard</span>
+            <span>{paymentCard}</span>
           </div>
           <div className="flex items-center gap-2 hover:text-gray-600 transition-colors">
             <Landmark className="w-5 h-5" />
-            <span>Bank Transfer</span>
+            <span>{paymentBank}</span>
           </div>
           <div className="flex items-center gap-2 hover:text-gray-600 transition-colors">
             <Wallet className="w-5 h-5" />
-            <span>Pay with USDT/USDC</span>
+            <span>{paymentCrypto}</span>
           </div>
-          <span>Secure payments powered by Stripe</span>
+          <span>{paymentSecure}</span>
         </div>
       </div>
     </section>

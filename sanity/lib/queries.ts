@@ -85,6 +85,10 @@ export const sideEventsQuery = groq`*[_type == "sideEvent"] | order(order asc){
 export const ticketsSectionQuery = groq`*[_type == "ticketsSection"][0]{
   sectionTitle,
   sectionSubtitle,
+  paymentMethodCard,
+  paymentMethodBank,
+  paymentMethodCrypto,
+  paymentSecureText,
   tickets
 }`
 
@@ -172,6 +176,10 @@ export const pageDataQuery = groq`{
   "ticketsSection": *[_type == "ticketsSection"][0]{
     sectionTitle,
     sectionSubtitle,
+    paymentMethodCard,
+    paymentMethodBank,
+    paymentMethodCrypto,
+    paymentSecureText,
     tickets
   },
   "speakersSection": *[_type == "speakersSection"][0]{
