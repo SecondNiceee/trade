@@ -249,6 +249,15 @@ export const pageDataQuery = groq`{
       colorTheme
     }
   },
+  "contactSection": *[_type == "contactSection"][0]{
+    sectionLabel,
+    sectionTitle,
+    sectionSubtitle,
+    speakerFormTitle,
+    speakerFormDescription,
+    sponsorFormTitle,
+    sponsorFormDescription
+  },
   "speakers": *[_type == "speaker"] | order(order asc){
     _id,
     name,

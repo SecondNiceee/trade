@@ -2,9 +2,22 @@
 
 import { useState } from "react"
 import { Send, Mic, Building2 } from "lucide-react"
+import type { ContactSection as ContactSectionType } from "@/sanity/lib/types"
 
-export function ContactSection() {
+interface ContactSectionProps {
+  sectionSettings?: ContactSectionType | null
+}
+
+export function ContactSection({ sectionSettings }: ContactSectionProps) {
   const [formType, setFormType] = useState<"speaker" | "sponsor">("speaker")
+
+  const sectionLabel = sectionSettings?.sectionLabel || "Get Involved"
+  const sectionTitle = sectionSettings?.sectionTitle || "Join SILKON 2026"
+  const sectionSubtitle = sectionSettings?.sectionSubtitle || "Become a speaker or sponsor and connect with thousands of decision-makers from across the globe."
+  const speakerFormTitle = sectionSettings?.speakerFormTitle || "Speaker Application"
+  const speakerFormDescription = sectionSettings?.speakerFormDescription || "Share your expertise with global business leaders. We're looking for innovative thinkers in technology, finance, sustainability, and international trade."
+  const sponsorFormTitle = sectionSettings?.sponsorFormTitle || "Sponsorship Inquiry"
+  const sponsorFormDescription = sectionSettings?.sponsorFormDescription || "Maximize your brand visibility and connect with 5,000+ decision-makers. Packages range from $10,000 to custom enterprise solutions."
 
   return (
     <section id="contact" className="relative py-12 bg-white overflow-hidden">
@@ -25,17 +38,17 @@ export function ContactSection() {
             style={{
               backgroundImage: 'linear-gradient(135deg, #808080 0%, #a0a0a0 50%, #808080 100%)'
             }}
-          >Get Involved</span>
+          >{sectionLabel}</span>
           <h2 
             className="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 bg-clip-text text-transparent"
             style={{
               backgroundImage: 'linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 30%, #2a2a2a 70%, #1a1a1a 100%)'
             }}
           >
-            Join SILKON 2026
+            {sectionTitle}
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Become a speaker or sponsor and connect with thousands of decision-makers from across the globe.
+            {sectionSubtitle}
           </p>
         </div>
 
@@ -92,11 +105,8 @@ export function ContactSection() {
                 style={{
                   backgroundImage: 'linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 100%)'
                 }}
-              >Speaker Application</h3>
-              <p className="text-gray-500 mb-8">
-                Share your expertise with global business leaders. We{"'"}re looking for innovative thinkers 
-                in technology, finance, sustainability, and international trade.
-              </p>
+              >{speakerFormTitle}</h3>
+              <p className="text-gray-500 mb-8">{speakerFormDescription}</p>
             </div>
           ) : (
             <div>
@@ -105,11 +115,8 @@ export function ContactSection() {
                 style={{
                   backgroundImage: 'linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 100%)'
                 }}
-              >Sponsorship Inquiry</h3>
-              <p className="text-gray-500 mb-8">
-                Maximize your brand visibility and connect with 5,000+ decision-makers. 
-                Packages range from $10,000 to custom enterprise solutions.
-              </p>
+              >{sponsorFormTitle}</h3>
+              <p className="text-gray-500 mb-8">{sponsorFormDescription}</p>
             </div>
           )}
 

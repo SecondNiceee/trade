@@ -157,6 +157,16 @@ export interface SideEventsSection {
   events?: SideEvent[]
 }
 
+export interface ContactSection {
+  sectionLabel?: string
+  sectionTitle?: string
+  sectionSubtitle?: string
+  speakerFormTitle?: string
+  speakerFormDescription?: string
+  sponsorFormTitle?: string
+  sponsorFormDescription?: string
+}
+
 export interface PageData {
   heroSettings: HeroSettings | null
   siteSettings: SiteSettings | null
@@ -166,6 +176,7 @@ export interface PageData {
   agendaSection: AgendaSection | null
   partnersSection: PartnersSection | null
   sideEventsSection: SideEventsSection | null
+  contactSection: ContactSection | null
   // Legacy - for backwards compatibility
   speakers: Speaker[]
   agendaDays: AgendaDay[]

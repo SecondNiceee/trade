@@ -14,6 +14,7 @@ import { speakersSection } from './speakersSection'
 import { agendaSection } from './agendaSection'
 import { partnersSection } from './partnersSection'
 import { sideEventsSection } from './sideEventsSection'
+import { contactSection } from './contactSection'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -33,5 +34,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     agendaSection,
     partnersSection,
     sideEventsSection,
+    contactSection,
   ],
 }
