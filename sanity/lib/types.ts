@@ -114,10 +114,57 @@ export interface WhyUzbekistanSettings {
   gatewayPoints?: string[]
 }
 
+// Section Settings Types
+export interface TicketItem {
+  _key: string
+  name: string
+  price: string
+  description?: string
+  features?: string[]
+  popular?: boolean
+}
+
+export interface TicketsSection {
+  sectionTitle?: string
+  sectionSubtitle?: string
+  tickets?: TicketItem[]
+}
+
+export interface SpeakersSection {
+  sectionTitle?: string
+  sectionSubtitle?: string
+  categories?: string[]
+  speakers?: Speaker[]
+}
+
+export interface AgendaSection {
+  sectionTitle?: string
+  sectionSubtitle?: string
+  days?: AgendaDay[]
+}
+
+export interface PartnersSection {
+  sectionTitle?: string
+  sectionSubtitle?: string
+  partners?: Partner[]
+}
+
+export interface SideEventsSection {
+  sectionTitle?: string
+  sectionSubtitle?: string
+  events?: SideEvent[]
+}
+
 export interface PageData {
   heroSettings: HeroSettings | null
   siteSettings: SiteSettings | null
   whyUzbekistanSettings: WhyUzbekistanSettings | null
+  ticketsSection: TicketsSection | null
+  speakersSection: SpeakersSection | null
+  agendaSection: AgendaSection | null
+  partnersSection: PartnersSection | null
+  sideEventsSection: SideEventsSection | null
+  // Legacy - for backwards compatibility
   speakers: Speaker[]
   agendaDays: AgendaDay[]
   tickets: Ticket[]
