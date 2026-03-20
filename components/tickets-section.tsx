@@ -2,15 +2,16 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Check, CreditCard, Landmark, Sparkles, Wallet } from "lucide-react"
-import type { Ticket, SiteSettings } from "@/sanity/lib/types"
+import type { Ticket, SiteSettings, TicketsSection as TicketsSectionType, TicketItem } from "@/sanity/lib/types"
 import { SectionSparkles } from "@/components/silver-accents"
 
 interface TicketsSectionProps {
   tickets: Ticket[]
   settings?: SiteSettings | null
+  sectionSettings?: TicketsSectionType | null
 }
 
-export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
+export function TicketsSection({ tickets, settings, sectionSettings }: TicketsSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
@@ -32,8 +33,15 @@ export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
     return () => observer.disconnect()
   }, [])
 
-  const title = settings?.ticketsSectionTitle || "Choose Your Experience"
-  const subtitle = settings?.ticketsSectionSubtitle || "Early bird pricing available until August 31, 2026. Group discounts available for 5+ tickets."
+  // Prefer new section settings, fall back to legacy siteSettings
+  const title = sectionSettings?.sectionTitle || settings?.ticketsSectionTitle || "Choose Your Experience"
+  const subtitle = sectionSettings?.sectionSubtitle || settings?.ticketsSectionSubtitle || "Early bird pricing available until August 31, 2026. Group discounts available for 5+ tickets."
+  
+  // Use tickets from section settings if available, otherwise use legacy tickets
+  const ticketItems = sectionSettings?.tickets?.map((t, i) => ({
+    ...t,
+    _id: t._key || `ticket-${i}`,
+  })) || tickets
 
   return (
     <section id="tickets" ref={sectionRef} className="relative py-12 bg-white overflow-hidden">
@@ -80,7 +88,7 @@ export function TicketsSection({ tickets, settings }: TicketsSectionProps) {
 
         {/* Ticket grid: first 3 in a row, remainder centered on next row */}
         <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
-          {tickets.map((ticket, index) => (
+          {ticketItems.map((ticket, index) => (
             <div
               key={ticket._id}
               className={`group relative rounded-3xl p-8 overflow-hidden transition-all duration-500 w-full md:w-[calc(33.333%-1.5rem)] lg:w-[calc(33.333%-2rem)] flex flex-col ${

@@ -122,6 +122,12 @@ const defaultData: PageData = {
     { _id: "3", title: "Investor Matchmaking", description: "Pre-scheduled 1-on-1 meetings between startups and venture capital firms from across the region.", date: "October 15-16, 2026", tag: "Business", icon: "briefcase", colorTheme: "blue" },
     { _id: "4", title: "Cultural Heritage Tour", description: "Guided tour of Tashkent's historic sites, including the ancient Silk Road caravanserais.", date: "October 17, 2026", tag: "Experience", icon: "star", colorTheme: "emerald" },
   ],
+  // Section settings (new structure)
+  ticketsSection: null,
+  speakersSection: null,
+  agendaSection: null,
+  partnersSection: null,
+  sideEventsSection: null,
 }
 
 export default async function HomePage() {
@@ -142,6 +148,12 @@ export default async function HomePage() {
       tickets: sanityData.tickets?.length ? sanityData.tickets : defaultData.tickets,
       partners: sanityData.partners?.length ? sanityData.partners : defaultData.partners,
       sideEvents: sanityData.sideEvents?.length ? sanityData.sideEvents : defaultData.sideEvents,
+      // Section settings
+      ticketsSection: sanityData.ticketsSection || null,
+      speakersSection: sanityData.speakersSection || null,
+      agendaSection: sanityData.agendaSection || null,
+      partnersSection: sanityData.partnersSection || null,
+      sideEventsSection: sanityData.sideEventsSection || null,
     }
   } catch (error) {
     console.log('[v0] Sanity fetch failed, using default data:', error)

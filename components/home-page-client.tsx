@@ -41,7 +41,8 @@ export function HomePageClient({ data }: HomePageClientProps) {
       />
       <TicketsSection 
         tickets={data.tickets} 
-        settings={data.siteSettings} 
+        settings={data.siteSettings}
+        sectionSettings={data.ticketsSection}
       />
       <ContactSection />
       <MediaSection />

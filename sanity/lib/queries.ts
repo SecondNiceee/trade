@@ -92,6 +92,67 @@ export const sideEventsQuery = groq`*[_type == "sideEvent"] | order(order asc){
   colorTheme
 }`
 
+// Section Settings Queries
+export const ticketsSectionQuery = groq`*[_type == "ticketsSection"][0]{
+  sectionTitle,
+  sectionSubtitle,
+  tickets
+}`
+
+export const speakersSectionQuery = groq`*[_type == "speakersSection"][0]{
+  sectionTitle,
+  sectionSubtitle,
+  categories,
+  "speakers": speakers[]->{
+    _id,
+    name,
+    role,
+    category,
+    image,
+    linkedin,
+    twitter,
+    bio
+  }
+}`
+
+export const agendaSectionQuery = groq`*[_type == "agendaSection"][0]{
+  sectionTitle,
+  sectionSubtitle,
+  "days": days[]->{
+    _id,
+    label,
+    date,
+    dateDisplay,
+    sessions
+  }
+}`
+
+export const partnersSectionQuery = groq`*[_type == "partnersSection"][0]{
+  sectionTitle,
+  sectionSubtitle,
+  "partners": partners[]->{
+    _id,
+    name,
+    tier,
+    logo,
+    website
+  }
+}`
+
+export const sideEventsSectionQuery = groq`*[_type == "sideEventsSection"][0]{
+  sectionTitle,
+  sectionSubtitle,
+  "events": events[]->{
+    _id,
+    title,
+    description,
+    date,
+    tag,
+    icon,
+    colorTheme
+  }
+}`
+
 // All page data query (for server components)
 export const pageDataQuery = groq`{
   "heroSettings": *[_type == "heroSettings"][0]{
@@ -128,6 +189,61 @@ export const pageDataQuery = groq`{
     sideEventsSectionSubtitle,
     contactEmail,
     socialLinks
+  },
+  "ticketsSection": *[_type == "ticketsSection"][0]{
+    sectionTitle,
+    sectionSubtitle,
+    tickets
+  },
+  "speakersSection": *[_type == "speakersSection"][0]{
+    sectionTitle,
+    sectionSubtitle,
+    categories,
+    "speakers": speakers[]->{
+      _id,
+      name,
+      role,
+      category,
+      image,
+      linkedin,
+      twitter,
+      bio
+    }
+  },
+  "agendaSection": *[_type == "agendaSection"][0]{
+    sectionTitle,
+    sectionSubtitle,
+    "days": days[]->{
+      _id,
+      label,
+      date,
+      dateDisplay,
+      sessions
+    }
+  },
+  "partnersSection": *[_type == "partnersSection"][0]{
+    sectionTitle,
+    sectionSubtitle,
+    "partners": partners[]->{
+      _id,
+      name,
+      tier,
+      logo,
+      website
+    }
+  },
+  "sideEventsSection": *[_type == "sideEventsSection"][0]{
+    sectionTitle,
+    sectionSubtitle,
+    "events": events[]->{
+      _id,
+      title,
+      description,
+      date,
+      tag,
+      icon,
+      colorTheme
+    }
   },
   "speakers": *[_type == "speaker"] | order(order asc){
     _id,
