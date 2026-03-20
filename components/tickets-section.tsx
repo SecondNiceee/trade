@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Check, CreditCard, Landmark, Sparkles, Wallet } from "lucide-react"
+import { SectionSparkles } from "@/components/silver-accents"
 import type { Ticket, TicketsSection as TicketsSectionType, TicketItem } from "@/sanity/lib/types"
 
 interface TicketsSectionProps {
